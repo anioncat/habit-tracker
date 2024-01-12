@@ -5,4 +5,4 @@ dist
 **/yarn-error.log
 .eslintcache
 .eslintcache'
-.yarn/
+.yarn
