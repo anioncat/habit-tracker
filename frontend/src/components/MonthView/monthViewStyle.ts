@@ -31,7 +31,7 @@ export const WeekDay = styled("td")<{
   ${(p) => (p.$today ? "border: 0.2em solid var(--primary-lite);" : undefined)}
 
   ${(p) =>
-    !p.$score
+    p.$score !== 0 && !p.$score
       ? undefined
       : p.$score >= 0 && p.$score <= 4
       ? `background: var(--scale-${p.$score + 1});`
