@@ -8,8 +8,7 @@
     "prebuild": "rm -rf dist",
     "build": "parcel build public/index.html",
     "lint": "eslint . --ext .js,.ts,.tsx --cache --cache-location '../.eslintcache'",
-    "lint:fix": "yarn lint --fix",
-    "check:types": "tsc --noemit"
+    "lint:fix": "yarn lint --fix"
   },
   "dependencies": {
     "axios": "^1.6.2",

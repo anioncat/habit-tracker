@@ -1,7 +1,5 @@
 import { Link, To } from 'react-router-dom'
 
-// import { Logo } from '/src/components'
-
 import { HeaderContainer } from './headerStyle'
 
 const content = <>{/* <Logo /> */}<h1>Mood Tracker</h1></>
