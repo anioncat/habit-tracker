@@ -1,11 +1,12 @@
 import { styled } from "goober";
 
 export const YearContainer = styled('div')`
-  padding: 0 0.5em 0.5em 0;
+  padding: 0 0.5em 0 0.5em;
+  margin: auto;
+
 
   display: flex;
   flex-direction: row;
-  justify-content: center;
   gap: 0.1em;
 
   overflow-x: scroll;
