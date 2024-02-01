@@ -5,6 +5,10 @@
   font-style: normal;
 }
 
+html {
+  font-family: var(--font-feature);
+}
+
 a,
 a:visited,
 a:active {
