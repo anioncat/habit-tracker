@@ -40,13 +40,13 @@ const Landing = () => {
       <Section>
         {monthView ? <Button onClick={switchViewType}>Year View</Button> : <Button onClick={switchViewType}>Month View</Button>}
       </Section>
-      <hr />
+      {/* <hr />
       <Section>
         <Button onClick={() => {
           clearData()
           setTimeout(() => window.location.reload(), 500)
         }}>Clear data</Button>
-      </Section>
+      </Section> */}
     </SectionsContainer>
   </Main>
 }
