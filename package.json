@@ -7,13 +7,10 @@
     "frontend"
   ],
   "scripts": {
-    "dev:frontend": "yarn workspace frontend start",
-    "build:frontend": "yarn workspace frontend build",
     "lint": "yarn workspaces run lint",
     "lint:fix": "yarn workspaces run lint:fix",
-    "check:types": "yarn workspaces run check:types",
-    "dev": "yarn dev:frontend",
-    "build": "yarn build:frontend"
+    "run": "yarn workspace frontend start",
+    "build": "yarn workspace frontend build"
   },
   "devDependencies": {
     "@parcel/packager-ts": "^2.10.3",
