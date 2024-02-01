@@ -1,4 +1,4 @@
-import { DependencyList, MouseEvent, useCallback, useEffect } from 'react'
+import { DependencyList, useCallback, useEffect } from 'react'
 
 /**
  * Mapping of events to what data the event accepts.

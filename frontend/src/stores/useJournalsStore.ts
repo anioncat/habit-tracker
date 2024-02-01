@@ -5,7 +5,7 @@ import { JournalDay, JournalYear } from '../types/ProjectTypes'
 
 import {
   APP_VERSION,
-  SCHEMA_VERSION,
+  SCHEMA_VERSION
 } from '/src/config'
 
 interface JournalsStore {
@@ -17,7 +17,7 @@ interface JournalsStore {
 }
 
 export const createNewYear = (year: number): JournalYear => {
-  console.log("New year entry created!")
+  console.log('New year entry created!')
   return {
     year,
     entries: [] as JournalDay[],
@@ -30,7 +30,7 @@ export const createNewYear = (year: number): JournalYear => {
   }
 }
 
-const useJournalsStore = create<JournalsStore>()(persist((set: StoreApi<JournalsStore>['setState'], get: StoreApi<JournalsStore>['getState']) => ({
+const useJournalsStore = create<JournalsStore>()(persist((set: StoreApi<JournalsStore>['setState']) => ({
   journals: [] as JournalYear[],
   setJournals: (journals: JournalYear[]) => set({ journals }),
   clearJournalYears: () => set({ journals: [] }),

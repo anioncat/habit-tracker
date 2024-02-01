@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react"
-import { EntryProps } from "../DayEntry/DayEntry"
-import { CommentTextAreaClass } from "./entryCommentStyle"
-import { useJournalDayStore } from "/src/stores"
-import { useResizeTextArea } from "/src/hooks"
+import { useEffect, useRef, useState } from 'react'
+import { EntryProps } from '../DayEntry/DayEntry'
+import { CommentTextAreaClass } from './entryCommentStyle'
+import { useJournalDayStore } from '/src/stores'
+import { useResizeTextArea } from '/src/hooks'
 
 export const EntryComment = ({ entry, jDay }: EntryProps) => {
   const [comment, setComment] = useState('')
@@ -22,7 +22,7 @@ export const EntryComment = ({ entry, jDay }: EntryProps) => {
       },
       data: {
         ...entry.data,
-        comment: comment
+        comment
       }
     }
     const newEntries = [...jDay.entries.filter(p => p.data.id !== entry.data.id), newEntry].sort((a, b) => a.data.id - b.data.id)

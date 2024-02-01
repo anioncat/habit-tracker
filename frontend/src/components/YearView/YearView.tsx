@@ -1,9 +1,9 @@
-import dayjs, { Dayjs } from "dayjs"
-import { YearContainer, YearWeekColumn } from "./yearViewStyle"
-import { useJournalDayStore } from "/src/stores"
-import { useCallback, useEffect, useMemo, useState } from "react"
-import { DayBlip } from "./components/DayBlip/DayBlip"
-import { JournalDay, Scale } from "/src/types/ProjectTypes"
+import dayjs, { Dayjs } from 'dayjs'
+import { YearContainer, YearWeekColumn } from './yearViewStyle'
+import { useJournalDayStore } from '/src/stores'
+import { useCallback, useEffect, useState } from 'react'
+import { DayBlip } from './components/DayBlip/DayBlip'
+import { Scale } from '/src/types/ProjectTypes'
 
 type WeekEntry = {
   month: number
@@ -12,9 +12,9 @@ type WeekEntry = {
 }
 
 const YearView = () => {
-  const [moodData , setMoodData] = useState<Record<string, number>>({})
+  const [moodData, setMoodData] = useState<Record<string, number>>({})
 
-  const {entries, year} = useJournalDayStore(s => s.journal)
+  const { entries, year } = useJournalDayStore(s => s.journal)
 
   useEffect(() => {
     if (entries) {
@@ -25,7 +25,7 @@ const YearView = () => {
       setMoodData(r)
     }
   }, [entries])
-  
+
   const generateFirstWeek = useCallback((): [WeekEntry[], Dayjs] => {
     const week: WeekEntry[] = []
 
@@ -34,9 +34,9 @@ const YearView = () => {
 
     for (let i = 0; i < 7; ++i) {
       if (i < firstDay) {
-        week.push({month: -1, date: -1, empty: true})
+        week.push({ month: -1, date: -1, empty: true })
       } else {
-        week.push({month: d.month() + 1, date: d.date(), empty: false})
+        week.push({ month: d.month() + 1, date: d.date(), empty: false })
         d = d.add(1, 'day')
       }
     }
@@ -48,15 +48,15 @@ const YearView = () => {
     let week: WeekEntry[] = []
     let d = dateTracker
 
-    while(d.isBefore(`${year}-12-31`)) {
-      week.push({month: d.month() + 1, date: d.date(), empty: false})
+    while (d.isBefore(`${year}-12-31`)) {
+      week.push({ month: d.month() + 1, date: d.date(), empty: false })
       d = d.add(1, 'day')
       if (d.day() === 0) {
         weeks.push(week)
         week = []
       }
     }
-    while (week.length < 7) { week.push({month: -1, date: -1, empty: true}) }
+    while (week.length < 7) { week.push({ month: -1, date: -1, empty: true }) }
     weeks.push(week)
     return weeks
   }, [year])
@@ -70,8 +70,8 @@ const YearView = () => {
   return <YearContainer>
     {generateWeeks().map((w, i) => <YearWeekColumn key={i}>
       {w.map((v, j) => v.empty
-      ? <DayBlip key={`${i}-${j}-${v.month}-${v.date}`} blank></DayBlip>
-      : <DayBlip key={`${i}-${j}-${v.month}-${v.date}`} score={moodData[`${v.month}-${v.date}`]} />
+        ? <DayBlip key={`${i}-${j}-${v.month}-${v.date}`} blank></DayBlip>
+        : <DayBlip key={`${i}-${j}-${v.month}-${v.date}`} score={moodData[`${v.month}-${v.date}`]} />
       )}
     </YearWeekColumn>)}
   </YearContainer>

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 
 import { Section, SectionsContainer } from './landingStyle'
 import { Button, Header, Main, MonthView, YearView } from '/src/components'
-import { useJournalDayStore } from '/src/stores'
+// import { useJournalDayStore } from '/src/stores'
 import { randomGreeting } from '/src/util/greetings'
 
 const Landing = () => {
@@ -12,7 +12,7 @@ const Landing = () => {
   const [time, setTime] = useState(0)
   const [monthView, setMonthView] = useState(true)
 
-  const clearData = useJournalDayStore(s => s.clearJournal)
+  // const clearData = useJournalDayStore(s => s.clearJournal)
 
   useEffect(() => {
     setTime(new Date().getTime())

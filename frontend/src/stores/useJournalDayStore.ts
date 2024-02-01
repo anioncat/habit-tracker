@@ -5,7 +5,7 @@ import { JournalDay, JournalYear } from '../types/ProjectTypes'
 
 import {
   APP_VERSION,
-  SCHEMA_VERSION,
+  SCHEMA_VERSION
 } from '/src/config'
 import { produce } from 'immer'
 
@@ -20,7 +20,7 @@ interface DayStore {
 }
 
 export const createDayEntry = (month: number, date: number): JournalDay => {
-  console.log("New day entry created!")
+  console.log('New day entry created!')
   const now = new Date().getTime()
   const metaData = {
     dateCreated: now,

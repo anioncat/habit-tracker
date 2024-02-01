@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 
-import { Angry, Frown, Laugh, Meh, Smile } from "lucide-react"
+import { Angry, Frown, Laugh, Meh, Smile } from 'lucide-react'
 
-import { ScaleButton } from "./ScaleButton"
-import { ScaleContainer } from "./scaleStyle"
+import { ScaleButton } from './ScaleButton'
+import { ScaleContainer } from './scaleStyle'
 import { useJournalDayStore } from '/src/stores'
-import { Entry, JournalDay, Scale } from "/src/types/ProjectTypes"
+import { Entry, JournalDay, Scale } from '/src/types/ProjectTypes'
 
 type ScaleProps = {
   entry: Entry
@@ -30,7 +30,7 @@ const ScaleEntry = ({ entry, jDay }: ScaleProps) => {
       },
       data: {
         ...entry.data,
-        data: newScale as Scale,
+        data: newScale as Scale
       }
     }
     const newEntries = [...jDay.entries.filter(p => p.data.id !== entry.data.id), newEntry].sort((a, b) => a.data.id - b.data.id)
@@ -44,11 +44,11 @@ const ScaleEntry = ({ entry, jDay }: ScaleProps) => {
   const iconSize = '4em'
 
   const scaleIcons = [
-    <Angry size={iconSize} />,
-    <Frown size={iconSize} />,
-    <Meh size={iconSize} />,
-    <Smile size={iconSize} />,
-    <Laugh size={iconSize} />
+    <Angry key="0" size={iconSize} />,
+    <Frown key="1" size={iconSize} />,
+    <Meh key="2" size={iconSize} />,
+    <Smile key="3" size={iconSize} />,
+    <Laugh key="4" size={iconSize} />
   ]
 
   return <ScaleContainer>

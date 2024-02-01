@@ -1,4 +1,4 @@
-import { styled } from "goober";
+import { styled } from 'goober'
 
 export const Blip = styled('div')<{$score: number, $blank: boolean}>`
   margin: 0;

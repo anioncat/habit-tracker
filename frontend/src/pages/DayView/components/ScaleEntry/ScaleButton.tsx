@@ -1,6 +1,6 @@
-import {ReactNode} from 'react'
+import { ReactNode } from 'react'
 
-import { ScaleButtonStyle } from "./scaleStyle"
+import { ScaleButtonStyle } from './scaleStyle'
 
 type ScaleButtonProps = {
   order: number
@@ -9,6 +9,6 @@ type ScaleButtonProps = {
   children: ReactNode
 }
 
-export const ScaleButton = ({order, onClick = () => null, children, selected = false} : ScaleButtonProps) => {
+export const ScaleButton = ({ order, onClick = () => null, children, selected = false } : ScaleButtonProps) => {
   return <ScaleButtonStyle onClick={onClick} $order={order} $selected={selected}>{children}</ScaleButtonStyle>
 }

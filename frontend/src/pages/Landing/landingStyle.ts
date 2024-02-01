@@ -1,4 +1,4 @@
-import { styled } from "goober";
+import { styled } from 'goober'
 
 export const Section = styled('div')`
 `

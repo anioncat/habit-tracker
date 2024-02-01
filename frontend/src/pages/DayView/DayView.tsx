@@ -1,60 +1,61 @@
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 
-import { Button, Header, Main } from "/src/components";
-import { useJournalDayStore, useJournalsStore } from "/src/stores";
-import { JournalDay } from "/src/types/ProjectTypes";
-import DayEntry from "./components/DayEntry/DayEntry";
-import { createNewYear } from "/src/stores/useJournalsStore";
-import { ChevronLeft } from "lucide-react";
+import { Button, Header, Main } from '/src/components'
+import { useJournalDayStore, useJournalsStore } from '/src/stores'
+import { JournalDay } from '/src/types/ProjectTypes'
+import DayEntry from './components/DayEntry/DayEntry'
+import { createNewYear } from '/src/stores/useJournalsStore'
+import { ChevronLeft } from 'lucide-react'
 
 const DayView = () => {
-  const { year: yearParam, month: monthParam, date: dateParam } = useParams();
+  const { year: yearParam, month: monthParam, date: dateParam } = useParams()
 
-  const journals = useJournalsStore((s) => s.journals);
-  const upsertJournalYear = useJournalsStore((s) => s.upsertJournalYear);
+  const journals = useJournalsStore((s) => s.journals)
+  const upsertJournalYear = useJournalsStore((s) => s.upsertJournalYear)
 
-  const { year: jYear, entries } = useJournalDayStore((s) => s.journal) ?? {};
-  const addDayEntry = useJournalDayStore((s) => s.addDayEntry);
-  const setJournal = useJournalDayStore((s) => s.set);
+  const { year: jYear, entries } = useJournalDayStore((s) => s.journal) ?? {}
+  const addDayEntry = useJournalDayStore((s) => s.addDayEntry)
+  const setJournal = useJournalDayStore((s) => s.set)
 
-  const [view, setView] = useState<JournalDay>(null);
+  const [view, setView] = useState<JournalDay>(null)
 
   useEffect(() => {
     if (yearParam) {
-      const y = parseInt(yearParam);
+      const y = parseInt(yearParam)
       if (y !== jYear) {
-        const j = journals.find((p) => p.year === y) ?? createNewYear(y);
-        upsertJournalYear(j);
-        setJournal(j);
-        console.log(`New journal set ${y}`);
+        const j = journals.find((p) => p.year === y) ?? createNewYear(y)
+        upsertJournalYear(j)
+        setJournal(j)
+        console.log(`New journal set ${y}`)
       }
     }
-  }, [yearParam]);
+  }, [yearParam])
 
   useEffect(() => {
     if (entries && monthParam && dateParam) {
-      const [m, d] = [parseInt(monthParam), parseInt(dateParam)];
-      const dayEntry = entries.find((p) => p.month === m && p.date === d);
+      const [m, d] = [parseInt(monthParam), parseInt(dateParam)]
+      const dayEntry = entries.find((p) => p.month === m && p.date === d)
       if (!dayEntry) {
-        console.log("Day not found, adding day entry");
-        addDayEntry(m, d);
+        console.log('Day not found, adding day entry')
+        addDayEntry(m, d)
       }
     }
-  }, [monthParam, dateParam, jYear]);
+  }, [monthParam, dateParam, jYear])
 
   useEffect(() => {
     if (entries) {
-      const [m, d] = [parseInt(monthParam), parseInt(dateParam)];
-      setView(entries.find((p) => p.month === m && p.date === d) ?? null);
+      const [m, d] = [parseInt(monthParam), parseInt(dateParam)]
+      setView(entries.find((p) => p.month === m && p.date === d) ?? null)
     }
-  }, [entries]);
+  }, [entries])
 
   return (
     <Main>
-      <Header center linkTo={"/"} />
-      <Link to={"/"}><Button><ChevronLeft />Home</Button></Link>
-      {view ? (
+      <Header center linkTo={'/'} />
+      <Link to={'/'}><Button><ChevronLeft />Home</Button></Link>
+      {view
+        ? (
         <>
           <p>
             Looking at {view.date}/{view.month}/{yearParam}
@@ -63,11 +64,12 @@ const DayView = () => {
             <DayEntry key={e.data.id} entry={e} jDay={view} />
           ))}
         </>
-      ) : (
+          )
+        : (
         <p>None found</p>
-      )}
+          )}
     </Main>
-  );
-};
+  )
+}
 
-export default DayView;
+export default DayView

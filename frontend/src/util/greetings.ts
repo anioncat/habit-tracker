@@ -10,7 +10,7 @@ const greetThee = [
   '안녕',
   'こんにちは',
   'S̄wạs̄dī',
-  "Olá"
+  'Olá'
 ]
 
 export const randomGreeting = (): string => greetThee[Math.floor(Math.random() * greetThee.length)]

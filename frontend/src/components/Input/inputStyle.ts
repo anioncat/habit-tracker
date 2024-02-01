@@ -1,5 +1,5 @@
-import { styled } from "goober";
-import { forwardRef } from "react";
+import { styled } from 'goober'
+import { forwardRef } from 'react'
 
 export const StyledInput = styled('input', forwardRef)<{as: string}>`
   font: inherit;

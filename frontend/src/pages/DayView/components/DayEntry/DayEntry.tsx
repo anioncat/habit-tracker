@@ -1,8 +1,8 @@
-import BadgeEntry from "../BadgeEntry/BadgeEntry"
-import { EntryComment } from "../EntryComment/EntryComment"
-import ScaleEntry from "../ScaleEntry/ScaleEntry"
-import { EntryContainer, EntryName, Spacer } from "./entryStyle"
-import { Entry, JournalDay } from "/src/types/ProjectTypes"
+import BadgeEntry from '../BadgeEntry/BadgeEntry'
+import { EntryComment } from '../EntryComment/EntryComment'
+import ScaleEntry from '../ScaleEntry/ScaleEntry'
+import { EntryContainer, EntryName, Spacer } from './entryStyle'
+import { Entry, JournalDay } from '/src/types/ProjectTypes'
 
 export type EntryProps = {
   entry: Entry

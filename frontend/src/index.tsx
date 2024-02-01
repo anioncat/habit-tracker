@@ -7,8 +7,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import * as Pages from './pages'
 import { Footer } from '/src/components'
 
-import { useJournalDayStore, useJournalsStore, useSelectionStore } from './stores'
-import { createNewYear } from './stores/useJournalsStore'
+import { useSelectionStore } from './stores'
 
 // Set up goober to use React
 setup(

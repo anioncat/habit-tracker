@@ -14,6 +14,6 @@ export const ScaleButtonStyle = styled('button') <{ $order: number, $selected: b
 
   ${p => p.$selected
     ? `background: var(--scale-${p.$order + 1});`
-    : `background: var(--scale-0);`
+    : 'background: var(--scale-0);'
   }
 `

@@ -10,7 +10,7 @@ import {
   WeekDay,
   WeekDayLink,
   MonthTableHead,
-  MonthTableHeaderContainer,
+  MonthTableHeaderContainer
 } from './monthViewStyle'
 import Button from '../Button/Button'
 import { useJournalDayStore } from '/src/stores'
@@ -136,9 +136,11 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
           {generateWeeks().map((w: number[], i) => (
             <MonthTableRow key={i}>
               {w.map((d: number, j) =>
-                d < 0 ? (
+                d < 0
+                  ? (
                   <WeekDay key={`${i}-${j}`} $blank></WeekDay>
-                ) : (
+                    )
+                  : (
                   <WeekDay
                     key={`${i}-${j}`}
                     $today={d === now.date() && now.month() === time.month() && now.year() === time.year()}
@@ -148,7 +150,7 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
                       <WeekDayLink>{d}</WeekDayLink>
                     </a>
                   </WeekDay>
-                )
+                    )
               )}
             </MonthTableRow>
           ))}

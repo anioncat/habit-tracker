@@ -1,4 +1,4 @@
-import { styled } from "goober";
+import { styled } from 'goober'
 
 export const YearContainer = styled('div')`
   padding: 0 0.5em 0 0.5em;
