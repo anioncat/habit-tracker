@@ -1,40 +1,40 @@
-import { styled } from "goober";
+import { styled } from 'goober'
 
-export const MonthTable = styled("table")`
+export const MonthTable = styled('table')`
   width: 100%;
-`;
+`
 
-export const MonthTableHead = styled("thead")`
+export const MonthTableHead = styled('thead')`
   border: 0.2em solid var(--black);
-`;
+`
 
-export const MonthTableHeader = styled("th")``;
+export const MonthTableHeader = styled('th')``
 
-export const MonthTableHeaderContainer = styled("div")`
+export const MonthTableHeaderContainer = styled('div')`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-`;
+`
 
-export const MonthTableRow = styled("tr")``;
+export const MonthTableRow = styled('tr')``
 
-export const MonthTableWeekHeaderRow = styled("tr")``;
+export const MonthTableWeekHeaderRow = styled('tr')``
 
-export const MonthTableWeekHeader = styled("td")`
+export const MonthTableWeekHeader = styled('td')`
   text-align: center;
-`;
+`
 
-export const WeekDay = styled("td")<{
-  $blank?: boolean;
-  $today?: boolean;
-  $score?: number;
+export const WeekDay = styled('td')<{
+  $blank?: boolean
+  $today?: boolean
+  $score?: number
 }>`
   height: 2.5em;
   border: 0.2em ridge var(--black);
 
-  ${(p) => (p.$blank ? "background: var(--secondary);" : "cursor: pointer;")}
+  ${(p) => (p.$blank ? 'background: var(--secondary);' : 'cursor: pointer;')}
 
-  ${(p) => (p.$today ? "border: 0.2em solid var(--primary-lite);" : undefined)}
+  ${(p) => (p.$today ? 'border: 0.2em solid var(--primary-lite);' : undefined)}
 
   ${(p) =>
     p.$score !== 0 && !p.$score
@@ -55,9 +55,9 @@ export const WeekDay = styled("td")<{
     text-decoration: none;
     color: var(--black);
   }
-`;
+`
 
-export const WeekDayLink = styled("div")`
+export const WeekDayLink = styled('div')`
   width: 100%;
   height: 100%;
-`;
+`

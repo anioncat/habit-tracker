@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
-import dayjs, { Dayjs } from "dayjs";
+import dayjs, { Dayjs } from 'dayjs'
 import {
   MonthTableWeekHeader,
   MonthTableWeekHeaderRow,
@@ -11,99 +11,99 @@ import {
   WeekDayLink,
   MonthTableHead,
   MonthTableHeaderContainer,
-} from "./monthViewStyle";
-import Button from "../Button/Button";
-import { useJournalDayStore } from "/src/stores";
-import { JournalDay, Scale } from "/src/types/ProjectTypes";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+} from './monthViewStyle'
+import Button from '../Button/Button'
+import { useJournalDayStore } from '/src/stores'
+import { JournalDay, Scale } from '/src/types/ProjectTypes'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 type MonthViewProps = {
-  initialTime: Dayjs;
-};
+  initialTime: Dayjs
+}
 
 const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
-  const [moodType, setMoodType] = useState<number>(0);
-  const [monthData, setMonthData] = useState<JournalDay[]>([]);
-  const [moodData, setMoodData] = useState<Record<number, number>>({});
-  const [time, setTime] = useState(inTime);
+  const [moodType, setMoodType] = useState<number>(0)
+  const [monthData, setMonthData] = useState<JournalDay[]>([])
+  const [moodData, setMoodData] = useState<Record<number, number>>({})
+  const [time, setTime] = useState(inTime)
 
-  const { entries } = useJournalDayStore((s) => s.journal) ?? {};
+  const { entries } = useJournalDayStore((s) => s.journal) ?? {}
 
   useEffect(() => {
     if (entries) {
-      setMonthData(entries.filter((p) => p.month === time.month() + 1));
+      setMonthData(entries.filter((p) => p.month === time.month() + 1))
     }
-  }, [entries, time]);
+  }, [entries, time])
 
   useEffect(() => {
-    const r = {} as Record<number, number>;
+    const r = {} as Record<number, number>
     monthData.forEach((d) => {
       r[d.date] = d.entries.find((p) => p.data.id === moodType).data
-        .data as Scale;
-    });
-    setMoodData(r);
-  }, [moodType, monthData, time]);
+        .data as Scale
+    })
+    setMoodData(r)
+  }, [moodType, monthData, time])
 
-  const month = time.month();
+  const month = time.month()
 
-  const now = useMemo(() => dayjs(new Date().getTime()), [time]);
+  const now = useMemo(() => dayjs(new Date().getTime()), [time])
 
   const generateFirstWeek = useCallback((): [number[], Dayjs] => {
-    const week = [];
+    const week = []
 
-    let d = time.date(1);
-    const firstDayOfMonth = d.day();
+    let d = time.date(1)
+    const firstDayOfMonth = d.day()
 
     for (let i = 0; i < 7; ++i) {
       if (i < firstDayOfMonth) {
-        week.push(-1);
+        week.push(-1)
       } else {
-        week.push(d.date());
-        d = d.add(1, "day");
+        week.push(d.date())
+        d = d.add(1, 'day')
       }
     }
-    return [week, d];
-  }, [time]);
+    return [week, d]
+  }, [time])
 
   const generateRestOfWeeks = useCallback(
     (dateTracker: Dayjs): number[][] => {
-      const weeks = [];
-      let week = [];
+      const weeks = []
+      let week = []
 
-      let d = dateTracker;
+      let d = dateTracker
 
       while (d.month() === month) {
-        week.push(d.date());
-        d = d.add(1, "day");
+        week.push(d.date())
+        d = d.add(1, 'day')
         if (d.day() === 0) {
-          weeks.push(week);
-          week = [];
+          weeks.push(week)
+          week = []
         }
       }
 
       while (week.length < 7) {
-        week.push(-1);
+        week.push(-1)
       }
-      weeks.push(week);
+      weeks.push(week)
 
-      return weeks;
+      return weeks
     },
     [time]
-  );
+  )
 
   const generateWeeks = useCallback((): number[][] => {
-    const [week1, d] = generateFirstWeek();
-    const rest = generateRestOfWeeks(d);
-    return [week1, ...rest];
-  }, [time]);
+    const [week1, d] = generateFirstWeek()
+    const rest = generateRestOfWeeks(d)
+    return [week1, ...rest]
+  }, [time])
 
   const previousMonth = () => {
-    setTime(time.subtract(1, "month"));
-  };
+    setTime(time.subtract(1, 'month'))
+  }
 
   const nextMonth = () => {
-    setTime(time.add(1, "month"));
-  };
+    setTime(time.add(1, 'month'))
+  }
 
   return (
     <>
@@ -115,7 +115,7 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
                 <Button onClick={previousMonth}>
                   <ChevronLeft />
                 </Button>
-                {time.format("MMM YYYY")}
+                {time.format('MMM YYYY')}
                 <Button onClick={nextMonth}>
                   <ChevronRight />
                 </Button>
@@ -141,7 +141,7 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
                 ) : (
                   <WeekDay
                     key={`${i}-${j}`}
-                    $today={d === now.date()}
+                    $today={d === now.date() && now.month() === time.month() && now.year() === time.year()}
                     $score={moodData[d]}
                   >
                     <a href={`/entry/${time.year()}/${month + 1}/${d}`}>
@@ -154,15 +154,11 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
           ))}
         </tbody>
       </MonthTable>
-      <Button
-        onClick={() => {
-          setMoodType((moodType + 1) % 2);
-        }}
-      >
-        {moodType === 0 ? "Work" : "General"}
+      <Button onClick={() => setMoodType((moodType + 1) % 2)}>
+        {moodType === 0 ? 'Work' : 'General'}
       </Button>
     </>
-  );
-};
+  )
+}
 
-export default MonthView;
+export default MonthView
