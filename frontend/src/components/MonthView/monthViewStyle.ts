@@ -1,6 +1,7 @@
 import { styled } from 'goober'
 
 export const MonthTable = styled('table')`
+table-layout: fixed;
   width: 100%;
 `
 
