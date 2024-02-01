@@ -10,6 +10,12 @@ export const MonthTableHead = styled("thead")`
 
 export const MonthTableHeader = styled("th")``;
 
+export const MonthTableHeaderContainer = styled("div")`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
 export const MonthTableRow = styled("tr")``;
 
 export const MonthTableWeekHeaderRow = styled("tr")``;

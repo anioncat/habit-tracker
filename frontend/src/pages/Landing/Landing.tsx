@@ -34,7 +34,7 @@ const Landing = () => {
         <hr />
       </Section>
       <Section>
-        {monthView ? <MonthView time={dayjs(new Date().getTime())} /> : <YearView /> }
+        {monthView ? <MonthView initialTime={dayjs(new Date().getTime())} /> : <YearView /> }
         <hr />
       </Section>
       <Section>
