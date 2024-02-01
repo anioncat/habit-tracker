@@ -5,6 +5,16 @@
   font-style: normal;
 }
 
+a,
+a:visited,
+a:active {
+  color: inherit;
+}
+
+button {
+  color: inherit;
+}
+
 :root {
   --font-feature: 'Nunito Sans', sans-serif;
 

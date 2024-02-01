@@ -34,6 +34,9 @@ export const ButtonStyleClass = ({ $icon, $secondary, $surface }: WrapperProps) 
     opacity: '.8',
     cursor: 'default'
   },
+  '&:visited': {
+    color: 'var(--white)'
+  },
   padding: $icon ? '.375em' : '.5em 1.2em',
   backgroundColor: $secondary ? 'var(--toolbar)' : $surface ? 'var(--surface)' : undefined
 })
