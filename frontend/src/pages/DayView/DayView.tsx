@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-import { Header, Main } from "/src/components";
+import { Button, Header, Main } from "/src/components";
 import { useJournalDayStore, useJournalsStore } from "/src/stores";
 import { JournalDay } from "/src/types/ProjectTypes";
 import DayEntry from "./components/DayEntry/DayEntry";
 import { createNewYear } from "/src/stores/useJournalsStore";
+import { ChevronLeft } from "lucide-react";
 
 const DayView = () => {
   const { year: yearParam, month: monthParam, date: dateParam } = useParams();
@@ -52,6 +53,7 @@ const DayView = () => {
   return (
     <Main>
       <Header center linkTo={"/"} />
+      <Link to={"/"}><Button><ChevronLeft />Home</Button></Link>
       {view ? (
         <>
           <p>
