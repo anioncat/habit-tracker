@@ -1,16 +1,19 @@
 import dayjs from 'dayjs'
 
 import { useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 
 import { Section, SectionsContainer } from './landingStyle'
 import { Button, Header, Main, MonthView, YearView } from '/src/components'
-// import { useJournalDayStore } from '/src/stores'
 import { randomGreeting } from '/src/util/greetings'
+// import { useJournalDayStore } from '/src/stores'
 
 const Landing = () => {
   const [greet, setGreet] = useState('Hello')
   const [time, setTime] = useState(0)
   const [monthView, setMonthView] = useState(true)
+
+  const [searchParams] = useSearchParams()
 
   // const clearData = useJournalDayStore(s => s.clearJournal)
 
@@ -34,7 +37,7 @@ const Landing = () => {
         <hr />
       </Section>
       <Section>
-        {monthView ? <MonthView initialTime={dayjs(new Date().getTime())} /> : <YearView /> }
+        {monthView ? <MonthView initialTime={searchParams.get('month') ? dayjs(new Date().getTime()).month(Number(searchParams.get('month'))) : dayjs(new Date().getTime())} /> : <YearView /> }
         <hr />
       </Section>
       <Section>

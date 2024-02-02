@@ -146,7 +146,7 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
                     $today={d === now.date() && now.month() === time.month() && now.year() === time.year()}
                     $score={moodData[d]}
                   >
-                    <a href={`/entry/${time.year()}/${month + 1}/${d}`}>
+                    <a href={`/entry/${time.year()}/${month + 1}/${d}?return=${month}`}>
                       <WeekDayLink>{d}</WeekDayLink>
                     </a>
                   </WeekDay>
