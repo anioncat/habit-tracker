@@ -37,7 +37,7 @@ const Landing = () => {
         <hr />
       </Section>
       <Section>
-        {monthView ? <MonthView initialTime={searchParams.get('month') ? dayjs(new Date().getTime()).month(Number(searchParams.get('month'))) : dayjs(new Date().getTime())} /> : <YearView /> }
+        {monthView ? <MonthView initialTime={searchParams.get('month') && !isNaN(Number(searchParams.get('month'))) ? dayjs(new Date().getTime()).month(Number(searchParams.get('month'))) : dayjs(new Date().getTime())} /> : <YearView /> }
         <hr />
       </Section>
       <Section>
