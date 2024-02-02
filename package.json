@@ -9,7 +9,7 @@
   "scripts": {
     "lint": "yarn workspaces run lint",
     "lint:fix": "yarn workspaces run lint:fix",
-    "run": "yarn workspace frontend start",
+    "dev": "yarn workspace frontend start",
     "build": "yarn workspace frontend build"
   },
   "devDependencies": {
