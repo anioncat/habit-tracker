@@ -31,7 +31,7 @@ const DayView = () => {
         console.log(`New journal set ${y}`)
       }
     }
-  }, [yearParam])
+  }, [jYear, journals, setJournal, upsertJournalYear, yearParam])
 
   useEffect(() => {
     if (entries && monthParam && dateParam) {
@@ -42,21 +42,25 @@ const DayView = () => {
         addDayEntry(m, d)
       }
     }
-  }, [monthParam, dateParam, jYear])
+  }, [monthParam, dateParam, jYear, entries, addDayEntry])
 
   useEffect(() => {
     if (entries) {
       const [m, d] = [parseInt(monthParam), parseInt(dateParam)]
       setView(entries.find((p) => p.month === m && p.date === d) ?? null)
     }
-  }, [entries])
+  }, [dateParam, entries, monthParam])
 
   return (
     <Main>
       <Header center linkTo={'/'} />
-      <Link to={`/?month=${searchParams.get('return')}`}><Button><ChevronLeft />Home</Button></Link>
-      {view
-        ? (
+      <Link to={`/?month=${searchParams.get('return')}`}>
+        <Button>
+          <ChevronLeft />
+          Home
+        </Button>
+      </Link>
+      {view ? (
         <>
           <p>
             Looking at {view.date}/{view.month}/{yearParam}
@@ -65,10 +69,9 @@ const DayView = () => {
             <DayEntry key={e.data.id} entry={e} jDay={view} />
           ))}
         </>
-          )
-        : (
+      ) : (
         <p>None found</p>
-          )}
+      )}
     </Main>
   )
 }

@@ -10,11 +10,11 @@ import {
   WeekDay,
   WeekDayLink,
   MonthTableHead,
-  MonthTableHeaderContainer
+  MonthTableHeaderContainer,
 } from './monthViewStyle'
 import Button from '../Button/Button'
-import { useJournalDayStore } from '/src/stores'
-import { JournalDay, Scale } from '/src/types/ProjectTypes'
+import { useJournalDayStore } from '../../stores'
+import { JournalDay, Scale } from '../../types/ProjectTypes'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 type MonthViewProps = {
@@ -46,7 +46,7 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
 
   const month = time.month()
 
-  const now = useMemo(() => dayjs(new Date().getTime()), [time])
+  const now = useMemo(() => dayjs(new Date().getTime()), [])
 
   const generateFirstWeek = useCallback((): [number[], Dayjs] => {
     const week = []
@@ -88,14 +88,14 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
 
       return weeks
     },
-    [time]
+    [month]
   )
 
   const generateWeeks = useCallback((): number[][] => {
     const [week1, d] = generateFirstWeek()
     const rest = generateRestOfWeeks(d)
     return [week1, ...rest]
-  }, [time])
+  }, [generateFirstWeek, generateRestOfWeeks])
 
   const previousMonth = () => {
     setTime(time.subtract(1, 'month'))
@@ -136,21 +136,25 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
           {generateWeeks().map((w: number[], i) => (
             <MonthTableRow key={i}>
               {w.map((d: number, j) =>
-                d < 0
-                  ? (
+                d < 0 ? (
                   <WeekDay key={`${i}-${j}`} $blank></WeekDay>
-                    )
-                  : (
+                ) : (
                   <WeekDay
                     key={`${i}-${j}`}
-                    $today={d === now.date() && now.month() === time.month() && now.year() === time.year()}
-                    $score={moodData[d]}
-                  >
-                    <a href={`/entry/${time.year()}/${month + 1}/${d}?return=${month}`}>
+                    $today={
+                      d === now.date() &&
+                      now.month() === time.month() &&
+                      now.year() === time.year()
+                    }
+                    $score={moodData[d]}>
+                    <a
+                      href={`/entry/${time.year()}/${
+                        month + 1
+                      }/${d}?return=${month}`}>
                       <WeekDayLink>{d}</WeekDayLink>
                     </a>
                   </WeekDay>
-                    )
+                )
               )}
             </MonthTableRow>
           ))}
