@@ -2,6 +2,7 @@ import { setup } from 'goober'
 import { StrictMode, createElement } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
+import './appStyle.css'
 
 import { App } from './App'
 
