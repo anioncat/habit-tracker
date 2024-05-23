@@ -2,7 +2,7 @@ import { AppColor } from '../config/style'
 
 const FooterItem = ({ children }: { children: React.ReactNode }) => (
   <span
-    className={`text-sm ${AppColor.blackText} [&_a]:underline [&_a]:text-inherit ${AppColor.primaryAChildHover}`}>
+    className={`text-sm ${AppColor.blackText} [&_a]:underline [&_a]:text-inherit ${AppColor.primaryAnchorChildHover}`}>
     {children}
   </span>
 )

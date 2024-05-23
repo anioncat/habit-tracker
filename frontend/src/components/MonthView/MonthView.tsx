@@ -12,7 +12,7 @@ import {
   MonthTableHead,
   MonthTableHeaderContainer,
 } from './monthViewStyle'
-import Button from '../Button/Button'
+import Button from '../Button'
 import { useJournalDayStore } from '../../stores'
 import { JournalDay, Scale } from '../../types/ProjectTypes'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
