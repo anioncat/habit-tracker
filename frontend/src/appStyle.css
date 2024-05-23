@@ -642,6 +642,14 @@ video {
   width: 100%;
 }
 
+.min-w-\[320px\] {
+  min-width: 320px;
+}
+
+.min-w-\[360px\] {
+  min-width: 360px;
+}
+
 .max-w-screen-sm {
   max-width: 640px;
 }
@@ -771,6 +779,18 @@ video {
   color: rgb(91 33 182 / var(--tw-text-opacity));
 }
 
+.\[\&_a\]\:flex a {
+  display: flex;
+}
+
+.\[\&_a\]\:items-center a {
+  align-items: center;
+}
+
+.\[\&_a\]\:gap-4 a {
+  gap: 1rem;
+}
+
 .\[\&_a\]\:text-inherit a {
   color: inherit;
 }
@@ -779,7 +799,28 @@ video {
   text-decoration-line: underline;
 }
 
+.\[\&_a\]\:no-underline a {
+  text-decoration-line: none;
+}
+
 .\[\&_a\]\:hover\:text-violet-800:hover a {
   --tw-text-opacity: 1;
   color: rgb(91 33 182 / var(--tw-text-opacity));
+}
+
+.\[\&_h1\]\:mb-2 h1 {
+  margin-bottom: 0.5rem;
+}
+
+.\[\&_h1\]\:pr-2 h1 {
+  padding-right: 0.5rem;
+}
+
+.\[\&_h1\]\:text-2xl h1 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.\[\&_h1\]\:font-bold h1 {
+  font-weight: 700;
 }
