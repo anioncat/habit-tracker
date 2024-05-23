@@ -2,6 +2,7 @@
   "name": "habit-tracker-bun",
   "private": true,
   "version": "0.0.0",
+  "schemaVersion": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "concurrently \"tailwind -i src/app.css -o src/appStyle.css --watch\" \"vite --host 0.0.0.0 --port 1234\"",
@@ -13,7 +14,7 @@
     "dayjs": "^1.11.10",
     "goober": "^2.1.14",
     "immer": "^10.0.3",
-    "lucide-react": "^0.343.0",
+    "lucide-react": "^0.379.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.2",
