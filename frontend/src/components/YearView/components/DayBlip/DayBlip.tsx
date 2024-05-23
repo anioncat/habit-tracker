@@ -1,9 +1,10 @@
 import { Blip } from './dayBlipStyle'
 
 type DayBlipProps = {
-  score?: number
-  blank?: boolean
+  score?: number | null
+  blank?: boolean | null
 }
 
-export const DayBlip = ({ score, blank }: DayBlipProps) =>
-  <Blip $blank={blank} $score={score}></Blip>
+export const DayBlip = ({ score, blank }: DayBlipProps) => (
+  <Blip $blank={blank ?? true} $score={score ?? null}></Blip>
+)

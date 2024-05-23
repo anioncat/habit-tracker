@@ -1,7 +1,7 @@
 import { styled } from 'goober'
 
 export const MonthTable = styled('table')`
-table-layout: fixed;
+  table-layout: fixed;
   width: 100%;
 `
 
@@ -28,7 +28,7 @@ export const MonthTableWeekHeader = styled('td')`
 export const WeekDay = styled('td')<{
   $blank?: boolean
   $today?: boolean
-  $score?: number
+  $score?: number | null
 }>`
   height: 2.5em;
   border: 0.2em ridge var(--black);

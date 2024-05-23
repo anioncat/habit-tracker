@@ -24,7 +24,7 @@ type MonthViewProps = {
 const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
   const [moodType, setMoodType] = useState<number>(0)
   const [monthData, setMonthData] = useState<JournalDay[]>([])
-  const [moodData, setMoodData] = useState<Record<number, number>>({})
+  const [moodData, setMoodData] = useState<Record<number, number | null>>({})
   const [time, setTime] = useState(inTime)
 
   const { entries } = useJournalDayStore((s) => s.journal) ?? {}
@@ -36,9 +36,9 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
   }, [entries, time])
 
   useEffect(() => {
-    const r = {} as Record<number, number>
+    const r = {} as Record<number, number | null>
     monthData.forEach((d) => {
-      r[d.date] = d.entries.find((p) => p.data.id === moodType).data
+      r[d.date] = d.entries.find((p) => p.data.id === moodType)?.data
         .data as Scale
     })
     setMoodData(r)

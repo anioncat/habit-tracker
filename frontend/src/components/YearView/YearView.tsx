@@ -1,9 +1,9 @@
 import dayjs, { Dayjs } from 'dayjs'
 import { YearContainer, YearWeekColumn } from './yearViewStyle'
-import { useJournalDayStore } from '/src/stores'
+import { useJournalDayStore } from '../../stores'
 import { useCallback, useEffect, useState } from 'react'
 import { DayBlip } from './components/DayBlip/DayBlip'
-import { Scale } from '/src/types/ProjectTypes'
+import { Scale } from '../../types/ProjectTypes'
 
 type WeekEntry = {
   month: number
@@ -12,15 +12,15 @@ type WeekEntry = {
 }
 
 const YearView = () => {
-  const [moodData, setMoodData] = useState<Record<string, number>>({})
+  const [moodData, setMoodData] = useState<Record<string, number | null>>({})
 
   const { entries, year } = useJournalDayStore((s) => s.journal)
 
   useEffect(() => {
     if (entries) {
-      const r = {} as Record<string, number>
+      const r = {} as Record<string, number | null>
       entries.forEach((d) => {
-        r[`${d.month}-${d.date}`] = d.entries.find((p) => p.data.id === 0).data
+        r[`${d.month}-${d.date}`] = d.entries.find((p) => p.data.id === 0)?.data
           .data as Scale
       })
       setMoodData(r)
