@@ -1,19 +1,9 @@
-import { setup } from 'goober'
-import { StrictMode, createElement } from 'react'
+import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import './appStyle.css'
 
 import { App } from './App'
-
-// Set up goober to use React
-setup(
-  createElement,
-  undefined,
-  undefined,
-  // Remove transient props from the DOM
-  (props) => Object.keys(props).forEach((p) => p[0] === '$' && delete props[p])
-)
 
 // Render the app
 const container = document.getElementById('root')
