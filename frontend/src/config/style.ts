@@ -24,6 +24,7 @@ export const AppColor = {
   primaryBg: 'bg-violet-800',
   primaryAnchorChildHover: '[&_a]:hover:text-violet-800',
   primaryHoverText: 'hover:text-violet-800',
+  primaryBorder: 'border-violet-800',
 
   // Secondary
   secondaryBg: 'bg-red-100',
@@ -33,7 +34,7 @@ export const AppColor = {
   score1Bg: 'bg-orange-500',
   score2Bg: 'bg-yellow-500',
   score3Bg: 'bg-lime-500',
-  score4Bg: 'bg-greed-500',
+  score4Bg: 'bg-green-500',
 
   getScore: (score: number | undefined): string => {
     switch (score) {

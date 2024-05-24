@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react'
 import { Link, useParams, useSearchParams } from 'react-router-dom'
 
 import { ChevronLeft } from 'lucide-react'
-import DayEntry from './components/DayEntry/DayEntry'
-import { Button, Header, Main } from '/src/components'
-import { useJournalDayStore, useJournalsStore } from '/src/stores'
-import { createNewYear } from '/src/stores/useJournalsStore'
-import { JournalDay } from '/src/types/ProjectTypes'
+import DayEntry from './components/DayEntry'
+import { Button, Header, Main } from '../../components'
+import { useJournalDayStore, useJournalsStore } from '../../stores'
+import { createNewYear } from '../../stores/useJournalsStore'
+import { JournalDay } from '../../types/ProjectTypes'
 
 const DayView = () => {
   const { year: yearParam, month: monthParam, date: dateParam } = useParams()
@@ -18,7 +18,7 @@ const DayView = () => {
   const addDayEntry = useJournalDayStore((s) => s.addDayEntry)
   const setJournal = useJournalDayStore((s) => s.set)
 
-  const [view, setView] = useState<JournalDay>(null)
+  const [view, setView] = useState<JournalDay>()
   const [searchParams] = useSearchParams()
 
   useEffect(() => {
@@ -45,9 +45,9 @@ const DayView = () => {
   }, [monthParam, dateParam, jYear, entries, addDayEntry])
 
   useEffect(() => {
-    if (entries) {
+    if (entries && monthParam && dateParam) {
       const [m, d] = [parseInt(monthParam), parseInt(dateParam)]
-      setView(entries.find((p) => p.month === m && p.date === d) ?? null)
+      setView(entries.find((p) => p.month === m && p.date === d))
     }
   }, [dateParam, entries, monthParam])
 

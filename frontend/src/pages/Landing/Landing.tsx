@@ -3,7 +3,6 @@ import dayjs from 'dayjs'
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
-import { SectionsContainer } from './landingStyle'
 import { Button, Header, Main, MonthView, YearView } from '../../components'
 import { randomGreeting } from '../../util/greetings'
 // import { useJournalDayStore } from '/src/stores'
@@ -27,6 +26,10 @@ const Landing = () => {
   const switchViewType = () => {
     setMonthView(!monthView)
   }
+
+  const SectionsContainer = ({ children }: { children: React.ReactNode }) => (
+    <div className="flex flex-col gap-4">{children}</div>
+  )
 
   return (
     <Main>
