@@ -1,21 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import dayjs, { Dayjs } from 'dayjs'
-import {
-  MonthTableWeekHeader,
-  MonthTableWeekHeaderRow,
-  MonthTable,
-  MonthTableHeader,
-  MonthTableRow,
-  WeekDay,
-  WeekDayLink,
-  MonthTableHead,
-  MonthTableHeaderContainer,
-} from './monthViewStyle'
-import Button from '../Button'
-import { useJournalDayStore } from '../../stores'
-import { JournalDay, Scale } from '../../types/ProjectTypes'
+import Button from './Button'
+import { useJournalDayStore } from '../stores'
+import { JournalDay, Scale } from '../types/ProjectTypes'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { AppColor } from '../config/style'
 
 type MonthViewProps = {
   initialTime: Dayjs
@@ -105,13 +95,52 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
     setTime(time.add(1, 'month'))
   }
 
+  const MonthTableWeekHeader = ({
+    children,
+  }: {
+    children: React.ReactNode
+  }) => <td className="text-center border">{children}</td>
+
+  const WeekDay = ({
+    children,
+    today = false,
+    blank = false,
+    score,
+  }: {
+    children?: React.ReactNode
+    today?: boolean
+    blank?: boolean
+    score?: number
+  }) => {
+    const todayStyle = ''
+    return (
+      <td
+        className={`
+          h-10
+          border-2 border-double ${AppColor.borderColor}
+          ${blank ? AppColor.disabledBg : 'cursor-pointer'}
+          ${today ? todayStyle : ''}
+          active:brightness-90
+          hover:brightness-125
+          [&_a]:text-right
+          ${AppColor.getScore(score)}
+        `}>
+        {children}
+      </td>
+    )
+  }
+
+  const WeekDayLink = ({ children }: { children: React.ReactNode }) => (
+    <div className="w-full h-full">{children}</div>
+  )
+
   return (
     <>
-      <MonthTable>
-        <MonthTableHead>
-          <MonthTableRow>
-            <MonthTableHeader colSpan={7}>
-              <MonthTableHeaderContainer>
+      <table className="table-fixed w-full">
+        <thead className={`border-2 ${AppColor.borderColor}`}>
+          <tr>
+            <th colSpan={7}>
+              <div className="flex flex-row justify-between">
                 <Button onClick={previousMonth}>
                   <ChevronLeft />
                 </Button>
@@ -119,10 +148,10 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
                 <Button onClick={nextMonth}>
                   <ChevronRight />
                 </Button>
-              </MonthTableHeaderContainer>
-            </MonthTableHeader>
-          </MonthTableRow>
-          <MonthTableWeekHeaderRow>
+              </div>
+            </th>
+          </tr>
+          <tr>
             <MonthTableWeekHeader>SUN</MonthTableWeekHeader>
             <MonthTableWeekHeader>MON</MonthTableWeekHeader>
             <MonthTableWeekHeader>TUE</MonthTableWeekHeader>
@@ -130,23 +159,23 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
             <MonthTableWeekHeader>THU</MonthTableWeekHeader>
             <MonthTableWeekHeader>FRI</MonthTableWeekHeader>
             <MonthTableWeekHeader>SAT</MonthTableWeekHeader>
-          </MonthTableWeekHeaderRow>
-        </MonthTableHead>
+          </tr>
+        </thead>
         <tbody>
           {generateWeeks().map((w: number[], i) => (
-            <MonthTableRow key={i}>
+            <tr key={i}>
               {w.map((d: number, j) =>
                 d < 0 ? (
-                  <WeekDay key={`${i}-${j}`} $blank></WeekDay>
+                  <WeekDay key={`${i}-${j}`} blank></WeekDay>
                 ) : (
                   <WeekDay
                     key={`${i}-${j}`}
-                    $today={
+                    today={
                       d === now.date() &&
                       now.month() === time.month() &&
                       now.year() === time.year()
                     }
-                    $score={moodData[d]}>
+                    score={moodData[d] ?? undefined}>
                     <a
                       href={`/entry/${time.year()}/${
                         month + 1
@@ -156,10 +185,10 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
                   </WeekDay>
                 )
               )}
-            </MonthTableRow>
+            </tr>
           ))}
         </tbody>
-      </MonthTable>
+      </table>
       <Button onClick={() => setMoodType((moodType + 1) % 2)}>
         {moodType === 0 ? 'Work' : 'General'}
       </Button>

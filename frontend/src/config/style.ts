@@ -14,6 +14,7 @@ export const AppColor = {
 
   // Disabled
   disabledButtonBg: 'disabled:bg-zinc-800',
+  disabledBg: 'bg-zinc-800',
 
   // Background
   backgroundColor: 'bg-white',
@@ -26,4 +27,28 @@ export const AppColor = {
 
   // Secondary
   secondaryBg: 'bg-red-100',
+
+  // Scores
+  score0Bg: 'bg-red-500',
+  score1Bg: 'bg-orange-500',
+  score2Bg: 'bg-yellow-500',
+  score3Bg: 'bg-lime-500',
+  score4Bg: 'bg-greed-500',
+
+  getScore: (score: number | undefined): string => {
+    switch (score) {
+      case 0:
+        return AppColor.score0Bg
+      case 1:
+        return AppColor.score1Bg
+      case 2:
+        return AppColor.score2Bg
+      case 3:
+        return AppColor.score3Bg
+      case 4:
+        return AppColor.score4Bg
+      default:
+        return ''
+    }
+  },
 }
