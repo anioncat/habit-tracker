@@ -8,8 +8,15 @@ export const AppColor = {
   toolbarText: 'text-slate-100',
   toolbarBg: 'bg-slate-100',
 
+  // Border
+  borderColor: 'border-slate-950',
+  borderFocus: 'focus:border-violet-800',
+
   // Disabled
   disabledButtonBg: 'disabled:bg-zinc-800',
+
+  // Background
+  backgroundColor: 'bg-white',
 
   // Primary
   primaryText: 'text-violet-800',
