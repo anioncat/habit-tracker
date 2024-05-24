@@ -5,7 +5,7 @@ interface MainProps extends HTMLAttributes<HTMLElement> {
 }
 
 const Main = ({ wide, ...props }: MainProps) => {
-  const mWidth = wide ? 'max-w-screen-xl' : 'max-w-screen-sm'
+  const mWidth = wide ? 'max-w-screen-xl' : 'max-w-screen-md'
   return (
     <main
       className={`${mWidth} w-full py-4 px-1 box-border my-0 mx-auto pb-12 min-w-[360px]`}

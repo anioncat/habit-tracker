@@ -1,5 +1,4 @@
 import dayjs, { Dayjs } from 'dayjs'
-import { YearContainer, YearWeekColumn } from './yearViewStyle'
 import { useJournalDayStore } from '../../stores'
 import { useCallback, useEffect, useState } from 'react'
 import { DayBlip } from './components/DayBlip/DayBlip'
@@ -73,6 +72,16 @@ const YearView = () => {
     return [week1, ...rest]
   }, [generateFirstWeek, generateRestOfWeeks])
 
+  const YearContainer = ({ children }: { children: React.ReactNode }) => (
+    <div className="px-2 py-4 m-auto flex flex-row gap-1 overflow-scroll">
+      {children}
+    </div>
+  )
+
+  const YearWeekColumn = ({ children }: { children: React.ReactNode }) => (
+    <div className="flex flex-col gap-1">{children}</div>
+  )
+
   return (
     <YearContainer>
       {generateWeeks().map((w, i) => (
@@ -83,7 +92,7 @@ const YearView = () => {
             ) : (
               <DayBlip
                 key={`${i}-${j}-${v.month}-${v.date}`}
-                score={moodData[`${v.month}-${v.date}`]}
+                score={moodData[`${v.month}-${v.date}`] ?? undefined}
               />
             )
           )}
