@@ -1,3 +1,7 @@
+type AppColorTargets = 'bg' | 'text' | 'border'
+
+type AppColorMods = 'focus' | 'disabled' | 'hover' | null
+
 export const AppColor = {
   // Text
   blackText: 'text-slate-950',
@@ -36,20 +40,21 @@ export const AppColor = {
   score3Bg: 'bg-lime-500',
   score4Bg: 'bg-green-500',
 
-  getScore: (score: number | undefined): string => {
-    switch (score) {
-      case 0:
-        return AppColor.score0Bg
-      case 1:
-        return AppColor.score1Bg
-      case 2:
-        return AppColor.score2Bg
-      case 3:
-        return AppColor.score3Bg
-      case 4:
-        return AppColor.score4Bg
-      default:
-        return ''
+  getScore: (
+    score: number | undefined,
+    target: AppColorTargets,
+    modifier: AppColorMods = null
+  ): string => {
+    if (score === undefined || score < 0 || score > 4) {
+      return ''
     }
+    const key = (
+      modifier ? modifier + ':' : '' + 'score' + score + title(target)
+    ) as keyof Omit<typeof AppColor, 'getScore'>
+    return AppColor[key]
   },
+}
+
+function title(s: string): string {
+  return s[0].toUpperCase() + s.slice(1)
 }

@@ -14,10 +14,10 @@ export const ScaleButton = ({
   children,
   selected = false,
 }: ScaleButtonProps) => {
-  const selection = selected ? `${AppColor.getScore(order)}` : ''
+  const selection = selected ? `${AppColor.getScore(order, 'bg')}` : ''
   return (
     <button
-      className={`m-0 border-0 rounded-2xl ${selection}`}
+      className={`m-0 p-1 border-0 rounded-2xl ${selection}`}
       onClick={onClick}>
       {children}
     </button>

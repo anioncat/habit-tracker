@@ -99,7 +99,7 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
     children,
   }: {
     children: React.ReactNode
-  }) => <td className="text-center border">{children}</td>
+  }) => <td className="text-center">{children}</td>
 
   const WeekDay = ({
     children,
@@ -123,7 +123,7 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
           active:brightness-90
           hover:brightness-125
           [&_a]:text-right
-          ${AppColor.getScore(score)}
+          ${AppColor.getScore(score, 'bg')}
         `}>
         {children}
       </td>
@@ -137,7 +137,7 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
   return (
     <>
       <table className="table-fixed w-full">
-        <thead className={`border-2 ${AppColor.borderColor}`}>
+        <thead>
           <tr>
             <th colSpan={7}>
               <div className="flex flex-row justify-between">
