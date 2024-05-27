@@ -112,14 +112,17 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
     blank?: boolean
     score?: number
   }) => {
-    const todayStyle = ''
+    const todayBorder = `border-2 border-double ${AppColor.primaryBorder} text-red-600 font-bold`
     return (
       <td
         className={`
           h-10
-          border-2 border-double ${AppColor.borderColor}
+          ${
+            today
+              ? todayBorder
+              : `border-2 border-solid ${AppColor.borderColor}`
+          }
           ${blank ? AppColor.disabledBg : 'cursor-pointer'}
-          ${today ? todayStyle : ''}
           active:brightness-90
           hover:brightness-125
           [&_a]:text-right
@@ -131,7 +134,7 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
   }
 
   const WeekDayLink = ({ children }: { children: React.ReactNode }) => (
-    <div className="w-full h-full">{children}</div>
+    <div className="w-full h-full select-none">{children}</div>
   )
 
   return (
@@ -179,7 +182,8 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
                     <a
                       href={`/entry/${time.year()}/${
                         month + 1
-                      }/${d}?return=${month}`}>
+                      }/${d}?return=${month}`}
+                      draggable="false">
                       <WeekDayLink>{d}</WeekDayLink>
                     </a>
                   </WeekDay>
