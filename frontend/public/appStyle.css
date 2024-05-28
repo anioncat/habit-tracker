@@ -903,6 +903,11 @@ html {
   padding-bottom: 1rem;
 }
 
+.px-24 {
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+
 .pb-12 {
   padding-bottom: 3rem;
 }
@@ -958,6 +963,14 @@ html {
   transition-property: box-shadow;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}
+
+.hover\:border-2:hover {
+  border-width: 2px;
+}
+
+.hover\:border-primary:hover {
+  border-color: var(--primary);
 }
 
 .hover\:bg-surface-0:hover {

@@ -11,9 +11,10 @@ const Blip = ({ score, blank }: { score?: number; blank?: boolean }) => {
     <div
       className={`
     m-0 w-3 h-3 aspect-square
-    border-2 rounded-sm
+    border ${AppColor.borderColor} rounded-sm
     ${blanked}
     ${AppColor.getScore(score, 'bg')}
+    hover:border-2 ${AppColor.borderHover}
   `}></div>
   )
 }

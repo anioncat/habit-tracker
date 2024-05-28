@@ -19,6 +19,7 @@ export const AppColor = {
   // Border
   borderColor: 'border-overlay-2',
   borderFocus: 'focus:border-primary',
+  borderHover: 'hover:border-primary',
 
   // Disabled
   disabledButtonBg: 'disabled:bg-overlay-1',
