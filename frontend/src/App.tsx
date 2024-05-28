@@ -4,8 +4,8 @@ import { Route, Routes } from 'react-router-dom'
 import * as Pages from './pages'
 import { Footer } from './components'
 import { useSelectionStore } from './stores'
-import { DEFAULT_THEME } from './config/styles'
-import { applyTheme } from './config/styles/utils'
+import { DEFAULT_THEME } from './config'
+import { applyTheme } from './config/styles'
 
 export const App = () => {
   const setSelection = useSelectionStore((s) => s.setSelection)
@@ -26,13 +26,13 @@ export const App = () => {
   }, [theme])
 
   return (
-    <>
+    <div className="flex flex-col min-h-lvh">
       <Routes>
         <Route path="/" element={<Pages.Landing />} />
         <Route path="/entry/:year/:month/:date" element={<Pages.DayView />} />
         <Route path="*" element={<Pages.Landing />} />
       </Routes>
       <Footer />
-    </>
+    </div>
   )
 }
