@@ -4,41 +4,48 @@ type AppColorMods = 'focus' | 'disabled' | 'hover' | null
 
 export const AppColor = {
   // Text
-  blackText: 'text-latte-text',
-  blackBg: 'bg-latte-text',
-  whiteText: 'text-latte-base',
+  blackText: 'text-text',
+  blackBg: 'bg-text',
+  whiteText: 'text-base',
+  whiteTextHover: 'hover:text-base',
 
   // Toolbar
-  toolbarText: 'text-latte-crust',
-  toolbarBg: 'bg-latte-crust',
+  toolbarText: 'text-crust',
+  toolbarBg: 'bg-crust',
+
+  // Table
+  mainBg: 'bg-base',
 
   // Border
-  borderColor: 'border-latte-overlay-2',
-  borderFocus: 'focus:border-latte-mauve',
+  borderColor: 'border-overlay-2',
+  borderFocus: 'focus:border-primary',
 
   // Disabled
-  disabledButtonBg: 'disabled:bg-latte-overlay-1',
-  disabledBg: 'bg-latte-overlay-1',
+  disabledButtonBg: 'disabled:bg-overlay-1',
+  disabledBg: 'bg-overlay-1',
 
   // Background
-  backgroundColor: 'bg-latte-base',
+  backgroundColor: 'bg-base',
 
   // Primary
-  primaryText: 'text-latte-mauve',
-  primaryBg: 'bg-latte-mauve',
-  primaryAnchorChildHover: '[&_a]:hover:text-latte-mauve',
-  primaryHoverText: 'hover:text-latte-mauve',
-  primaryBorder: 'border-latte-mauve',
+  primaryText: 'text-primary',
+  primaryBg: 'bg-primary',
+  primaryAnchorChildHover: '[&_a]:hover:text-primary',
+  primaryHoverText: 'hover:text-primary',
+  primaryBorder: 'border-primary',
 
   // Secondary
-  secondaryBg: 'bg-latte-rosewater',
+  secondaryBg: 'bg-secondary',
+
+  // Special
+  monthHover: 'hover:bg-surface-0',
 
   // Scores
-  score0Bg: 'bg-latte-red',
-  score1Bg: 'bg-latte-yellow',
-  score2Bg: 'bg-latte-peach',
-  score3Bg: 'bg-latte-green',
-  score4Bg: 'bg-latte-sky',
+  score0Bg: 'bg-score0',
+  score1Bg: 'bg-score1',
+  score2Bg: 'bg-score2',
+  score3Bg: 'bg-score3',
+  score4Bg: 'bg-score4',
 
   getScore: (
     score: number | undefined,
@@ -50,7 +57,7 @@ export const AppColor = {
     }
     const key = (
       modifier ? modifier + ':' : '' + 'score' + score + title(target)
-    ) as keyof Omit<typeof AppColor, 'getScore'>
+    ) as keyof Omit<typeof AppColor, 'getScore' | 'monthHover'>
     return AppColor[key]
   },
 }

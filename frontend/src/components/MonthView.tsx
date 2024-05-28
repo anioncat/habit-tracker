@@ -112,34 +112,31 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
     blank?: boolean
     score?: number
   }) => {
-    const todayBorder = `border-2 border-double ${AppColor.primaryBorder} text-red-600 font-bold`
-    return (
-      <td
-        className={`
-          h-10
-          ${
-            today
-              ? todayBorder
-              : `border-2 border-solid ${AppColor.borderColor}`
-          }
-          ${blank ? AppColor.disabledBg : 'cursor-pointer'}
-          active:brightness-90
-          hover:brightness-125
-          [&_a]:text-right
-          ${AppColor.getScore(score, 'bg')}
-        `}>
-        {children}
-      </td>
-    )
+    const borderStyle = `border-2 border-solid ${AppColor.borderColor}`
+    const todayBorderStyle = `border-2 border-double ${AppColor.primaryBorder} ${AppColor.primaryText} font-bold`
+
+    const weekDayHoverStyle =
+      score !== undefined
+        ? 'active:brightness-90 hover:brightness-125 ' +
+          AppColor.getScore(score, 'bg')
+        : AppColor.monthHover
+
+    const cellStyle = `
+      h-10
+      ${today ? todayBorderStyle : borderStyle}
+      [&_a]:text-right
+      ${blank ? AppColor.disabledBg : 'cursor-pointer ' + weekDayHoverStyle}
+    `
+    return <td className={cellStyle}>{children}</td>
   }
 
   const WeekDayLink = ({ children }: { children: React.ReactNode }) => (
-    <div className="w-full h-full select-none">{children}</div>
+    <div className={`w-full h-full select-none`}>{children}</div>
   )
 
   return (
     <>
-      <table className="table-fixed w-full">
+      <table className={`table-fixed w-full`}>
         <thead>
           <tr>
             <th colSpan={7}>
@@ -193,9 +190,11 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
           ))}
         </tbody>
       </table>
+      <div className="h-2"></div>
       <Button onClick={() => setMoodType((moodType + 1) % 2)}>
         {moodType === 0 ? 'Work' : 'General'}
       </Button>
+      <div className="h-2"></div>
     </>
   )
 }
