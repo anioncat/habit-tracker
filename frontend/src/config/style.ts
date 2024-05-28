@@ -4,41 +4,41 @@ type AppColorMods = 'focus' | 'disabled' | 'hover' | null
 
 export const AppColor = {
   // Text
-  blackText: 'text-slate-950',
-  blackBg: 'bg-slate-950',
-  whiteText: 'text-slate-100',
+  blackText: 'text-latte-text',
+  blackBg: 'bg-latte-text',
+  whiteText: 'text-latte-base',
 
   // Toolbar
-  toolbarText: 'text-slate-100',
-  toolbarBg: 'bg-slate-100',
+  toolbarText: 'text-latte-crust',
+  toolbarBg: 'bg-latte-crust',
 
   // Border
-  borderColor: 'border-slate-950',
-  borderFocus: 'focus:border-violet-800',
+  borderColor: 'border-latte-overlay-2',
+  borderFocus: 'focus:border-latte-mauve',
 
   // Disabled
-  disabledButtonBg: 'disabled:bg-zinc-800',
-  disabledBg: 'bg-zinc-800',
+  disabledButtonBg: 'disabled:bg-latte-overlay-1',
+  disabledBg: 'bg-latte-overlay-1',
 
   // Background
-  backgroundColor: 'bg-white',
+  backgroundColor: 'bg-latte-base',
 
   // Primary
-  primaryText: 'text-violet-800',
-  primaryBg: 'bg-violet-800',
-  primaryAnchorChildHover: '[&_a]:hover:text-violet-800',
-  primaryHoverText: 'hover:text-violet-800',
-  primaryBorder: 'border-violet-800',
+  primaryText: 'text-latte-mauve',
+  primaryBg: 'bg-latte-mauve',
+  primaryAnchorChildHover: '[&_a]:hover:text-latte-mauve',
+  primaryHoverText: 'hover:text-latte-mauve',
+  primaryBorder: 'border-latte-mauve',
 
   // Secondary
-  secondaryBg: 'bg-red-100',
+  secondaryBg: 'bg-latte-rosewater',
 
   // Scores
-  score0Bg: 'bg-red-500',
-  score1Bg: 'bg-orange-500',
-  score2Bg: 'bg-yellow-500',
-  score3Bg: 'bg-lime-500',
-  score4Bg: 'bg-green-500',
+  score0Bg: 'bg-latte-red',
+  score1Bg: 'bg-latte-yellow',
+  score2Bg: 'bg-latte-peach',
+  score3Bg: 'bg-latte-green',
+  score4Bg: 'bg-latte-sky',
 
   getScore: (
     score: number | undefined,
