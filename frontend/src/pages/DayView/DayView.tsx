@@ -3,7 +3,7 @@ import { Link, useParams, useSearchParams } from 'react-router-dom'
 
 import { ChevronLeft } from 'lucide-react'
 import DayEntry from './components/DayEntry'
-import { Button, Header, Main } from '../../components'
+import { Button, Main } from '../../components'
 import { useJournalDayStore, useJournalsStore } from '../../stores'
 import { createNewYear } from '../../stores/useJournalsStore'
 import { JournalDay } from '../../types/ProjectTypes'
@@ -53,7 +53,6 @@ const DayView = () => {
 
   return (
     <Main>
-      <Header center linkTo={'/'} />
       <Link to={`/?month=${searchParams.get('return')}`}>
         <Button>
           <ChevronLeft />

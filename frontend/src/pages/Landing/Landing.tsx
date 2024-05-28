@@ -3,7 +3,7 @@ import dayjs from 'dayjs'
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
-import { Button, Header, Main, MonthView, YearView } from '../../components'
+import { Button, Main, MonthView, YearView } from '../../components'
 import { randomGreeting } from '../../util/greetings'
 // import { useJournalDayStore } from '/src/stores'
 
@@ -33,7 +33,6 @@ const Landing = () => {
 
   return (
     <Main>
-      <Header center linkTo={'/'} />
       <SectionsContainer>
         <div className="container">
           <p>{greet}!</p>

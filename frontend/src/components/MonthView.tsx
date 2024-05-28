@@ -131,7 +131,7 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
   }
 
   const WeekDayLink = ({ children }: { children: React.ReactNode }) => (
-    <div className={`w-full h-full select-none`}>{children}</div>
+    <div className={`w-full h-full select-none text-inherit`}>{children}</div>
   )
 
   return (

@@ -24,7 +24,7 @@ export const AppColor = {
   disabledBg: 'bg-overlay-1',
 
   // Background
-  backgroundColor: 'bg-mantle',
+  backgroundColor: 'bg-base',
 
   // Primary
   primaryText: 'text-primary',

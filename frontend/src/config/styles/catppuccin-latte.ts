@@ -1,6 +1,6 @@
-import { ITheme } from './utils'
+import { Theme } from './utils'
 
-const CatppucinLatte: ITheme = {
+const CatppucinLatte: Theme = {
   primary: '#8839ef', // Mauve
   secondary: '#dc8a78', // Rosewater
   score0: '#d20f39', // Red

@@ -1,6 +1,6 @@
 import { themes } from '.'
 
-export interface ITheme {
+export interface Theme {
   primary: string
   secondary: string
   score0: string
@@ -22,15 +22,15 @@ export interface ITheme {
   crust: string
 }
 
-export interface IThemes {
-  [key: string]: ITheme
+export interface Themes {
+  [key: string]: Theme
 }
 
-export interface IMappedTheme {
+export interface MappedTheme {
   [key: string]: string | null
 }
 
-export const mapTheme = (variables: ITheme): IMappedTheme => {
+export const mapTheme = (variables: Theme): MappedTheme => {
   return {
     '--primary': variables.primary || '',
     '--secondary': variables.secondary || '',
