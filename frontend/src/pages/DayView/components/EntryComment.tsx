@@ -40,7 +40,7 @@ export const EntryComment = ({ entry, jDay }: EntryProps) => {
 
   return (
     <textarea
-      className={`resize-none border-b-4 ${AppColor.primaryBorder}`}
+      className={`resize-none border-b-4 ${AppColor.primaryBorder} ${AppColor.whiteBg} rounded p-1`}
       value={comment}
       onChange={(e) => setComment(e.target.value)}
       onBlur={handleSaveComment}

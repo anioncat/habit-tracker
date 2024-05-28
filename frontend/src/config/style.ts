@@ -8,13 +8,11 @@ export const AppColor = {
   blackBg: 'bg-text',
   whiteText: 'text-base',
   whiteTextHover: 'hover:text-base',
+  whiteBg: 'bg-base',
 
   // Toolbar
   toolbarText: 'text-crust',
   toolbarBg: 'bg-crust',
-
-  // Table
-  mainBg: 'bg-base',
 
   // Border
   borderColor: 'border-overlay-2',
@@ -26,7 +24,7 @@ export const AppColor = {
   disabledBg: 'bg-overlay-1',
 
   // Background
-  backgroundColor: 'bg-base',
+  backgroundColor: 'bg-mantle',
 
   // Primary
   primaryText: 'text-primary',

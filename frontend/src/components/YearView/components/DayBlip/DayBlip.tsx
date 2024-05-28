@@ -6,7 +6,9 @@ type DayBlipProps = {
 }
 
 const Blip = ({ score, blank }: { score?: number; blank?: boolean }) => {
-  const blanked = blank ? `${AppColor.disabledBg} border-0` : ''
+  const blanked = blank
+    ? `${AppColor.disabledBg} border-0`
+    : `hover:border-2 ${AppColor.borderHover}`
   return (
     <div
       className={`
@@ -14,7 +16,6 @@ const Blip = ({ score, blank }: { score?: number; blank?: boolean }) => {
     border ${AppColor.borderColor} rounded-sm
     ${blanked}
     ${AppColor.getScore(score, 'bg')}
-    hover:border-2 ${AppColor.borderHover}
   `}></div>
   )
 }
