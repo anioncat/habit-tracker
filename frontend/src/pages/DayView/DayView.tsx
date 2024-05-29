@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
-import { Link, useParams, useSearchParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 
-import { ChevronLeft } from 'lucide-react'
 import DayEntry from './components/DayEntry'
-import { Button, Main } from '../../components'
+import { Main } from '../../components'
 import { useJournalDayStore, useJournalsStore } from '../../stores'
 import { createNewYear } from '../../stores/useJournalsStore'
 import { JournalDay } from '../../types/ProjectTypes'
@@ -52,18 +51,12 @@ const DayView = () => {
   }, [dateParam, entries, monthParam])
 
   return (
-    <Main>
-      <Link to={`/?month=${searchParams.get('return')}`}>
-        <Button>
-          <ChevronLeft />
-          Home
-        </Button>
-      </Link>
+    <Main backLink={`/?month=${searchParams.get('return')}`}>
       {view ? (
         <>
-          <p>
-            Looking at {view.date}/{view.month}/{yearParam}
-          </p>
+          <h2 className="font-bold text-2xl">
+            {view.date}/{view.month}/{yearParam}
+          </h2>
           {view.entries.map((e) => (
             <DayEntry key={e.data.id} entry={e} jDay={view} />
           ))}

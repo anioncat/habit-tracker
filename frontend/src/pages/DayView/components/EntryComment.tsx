@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { EntryProps } from './DayEntry'
 import { useJournalDayStore } from '../../../stores'
 import { useResizeTextArea } from '../../../hooks'
-import { AppColor } from '../../../config/style'
+import { AppStyle } from '../../../config/style'
 
 export const EntryComment = ({ entry, jDay }: EntryProps) => {
   const [comment, setComment] = useState('')
@@ -40,7 +40,7 @@ export const EntryComment = ({ entry, jDay }: EntryProps) => {
 
   return (
     <textarea
-      className={`resize-none border-b-4 ${AppColor.primaryBorder} ${AppColor.whiteBg} rounded p-1`}
+      className={`resize-none border-b-4 ${AppStyle.primaryBorder} ${AppStyle.whiteBg} rounded p-1`}
       value={comment}
       onChange={(e) => setComment(e.target.value)}
       onBlur={handleSaveComment}

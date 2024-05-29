@@ -5,7 +5,7 @@ import Button from './Button'
 import { useJournalDayStore } from '../stores'
 import { JournalDay, Scale } from '../types/ProjectTypes'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { AppColor } from '../config/style'
+import { AppStyle } from '../config/style'
 
 type MonthViewProps = {
   initialTime: Dayjs
@@ -112,20 +112,20 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
     blank?: boolean
     score?: number
   }) => {
-    const borderStyle = `border-2 border-solid ${AppColor.borderColor}`
-    const todayBorderStyle = `border-2 border-double ${AppColor.primaryBorder} ${AppColor.primaryText} font-bold`
+    const borderStyle = `border-2 border-solid ${AppStyle.borderColor}`
+    const todayBorderStyle = `border-2 border-double ${AppStyle.primaryBorder} ${AppStyle.primaryText} font-bold`
 
     const weekDayHoverStyle =
       score !== undefined
         ? 'active:brightness-90 hover:brightness-125 ' +
-          AppColor.getScore(score, 'bg')
-        : AppColor.monthHover
+          AppStyle.getScore(score, 'bg')
+        : AppStyle.monthHover
 
     const cellStyle = `
       h-10
       ${today ? todayBorderStyle : borderStyle}
       [&_a]:text-right
-      ${blank ? AppColor.disabledBg : 'cursor-pointer ' + weekDayHoverStyle}
+      ${blank ? AppStyle.disabledBg : 'cursor-pointer ' + weekDayHoverStyle}
     `
     return <td className={cellStyle}>{children}</td>
   }

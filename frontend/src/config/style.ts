@@ -2,7 +2,10 @@ type AppColorTargets = 'bg' | 'text' | 'border'
 
 type AppColorMods = 'focus' | 'disabled' | 'hover' | null
 
-export const AppColor = {
+export const AppStyle = {
+  // Main width
+  mainSize: 'max-w-screen-xl w-full min-w-[360px]',
+
   // Text
   blackText: 'text-text',
   blackBg: 'bg-text',
@@ -56,8 +59,8 @@ export const AppColor = {
     }
     const key = (
       modifier ? modifier + ':' : '' + 'score' + score + title(target)
-    ) as keyof Omit<typeof AppColor, 'getScore' | 'monthHover'>
-    return AppColor[key]
+    ) as keyof Omit<typeof AppStyle, 'getScore' | 'monthHover'>
+    return AppStyle[key]
   },
 }
 

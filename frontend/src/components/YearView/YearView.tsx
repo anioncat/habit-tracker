@@ -3,7 +3,7 @@ import { useJournalDayStore } from '../../stores'
 import { useCallback, useEffect, useState } from 'react'
 import { DayBlip } from './components/DayBlip/DayBlip'
 import { Scale } from '../../types/ProjectTypes'
-import { AppColor } from '../../config/style'
+import { AppStyle } from '../../config/style'
 
 type WeekEntry = {
   month: number
@@ -75,7 +75,7 @@ const YearView = () => {
 
   const YearContainer = ({ children }: { children: React.ReactNode }) => (
     <div
-      className={`px-2 py-4 m-auto flex flex-row gap-1 overflow-scroll ${AppColor.borderColor} border-2 rounded`}>
+      className={`px-2 py-4 m-auto flex flex-row gap-1 overflow-scroll ${AppStyle.borderColor} border-2 rounded`}>
       {children}
     </div>
   )

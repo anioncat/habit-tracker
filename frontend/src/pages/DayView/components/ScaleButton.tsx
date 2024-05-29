@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { AppColor } from '../../../config/style'
+import { AppStyle } from '../../../config/style'
 
 type ScaleButtonProps = {
   order: number
@@ -14,7 +14,7 @@ export const ScaleButton = ({
   children,
   selected = false,
 }: ScaleButtonProps) => {
-  const selection = selected ? `${AppColor.getScore(order, 'bg')}` : ''
+  const selection = selected ? `${AppStyle.getScore(order, 'bg')}` : ''
   return (
     <button
       className={`m-0 p-1 border-0 rounded-2xl ${selection}`}

@@ -13,7 +13,7 @@ const EntryContainer = ({ children }: { children: React.ReactNode }) => (
 )
 
 const EntryName = ({ eName }: { eName: string }) => (
-  <h2 className="text-xl font-semibold">{eName}</h2>
+  <h3 className="text-xl font-semibold">{eName}</h3>
 )
 
 const Spacer = () => <div className="h-2"></div>

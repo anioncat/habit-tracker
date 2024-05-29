@@ -1,4 +1,4 @@
-import { AppColor } from '../../../../config/style'
+import { AppStyle } from '../../../../config/style'
 
 type DayBlipProps = {
   score?: number
@@ -7,15 +7,15 @@ type DayBlipProps = {
 
 const Blip = ({ score, blank }: { score?: number; blank?: boolean }) => {
   const blanked = blank
-    ? `${AppColor.disabledBg} border-0`
-    : `hover:border-2 ${AppColor.borderHover}`
+    ? `${AppStyle.disabledBg} border-0`
+    : `hover:border-2 ${AppStyle.borderHover}`
   return (
     <div
       className={`
     m-0 w-3 h-3 aspect-square
-    border ${AppColor.borderColor} rounded-sm
+    border ${AppStyle.borderColor} rounded-sm
     ${blanked}
-    ${AppColor.getScore(score, 'bg')}
+    ${AppStyle.getScore(score, 'bg')}
   `}></div>
   )
 }
