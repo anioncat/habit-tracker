@@ -45,7 +45,7 @@ const Dialog = ({
       <Overlay></Overlay>
       <ContentContainer>
         <h2 className="font-bold text-2xl text-text">{title}</h2>
-        <div className="[&_*]:text-text">{children}</div>
+        <div className="[&_*]:text-text w-4/5">{children}</div>
         <div className="self-end mt-auto">
           {actions?.map((a) => (
             <Button onClick={a[1]}>a[0]</Button>

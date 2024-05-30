@@ -3,7 +3,7 @@ import { AppStyle } from '../config/style'
 import { ChevronLeft, Cog } from 'lucide-react'
 import Button from './Button'
 import { useState } from 'react'
-import PreferenceDialog from './PreferenceDialog'
+import PreferenceDialog from './PreferenceDialog/PreferenceDialog'
 
 const Header = ({ center, linkTo }: { center?: boolean; linkTo?: To }) => {
   const [prefOpen, setPrefOpen] = useState(false)

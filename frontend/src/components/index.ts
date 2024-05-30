@@ -6,3 +6,5 @@ export { default as Button } from './Button'
 
 export { default as MonthView } from './MonthView'
 export { default as YearView } from './YearView/YearView'
+
+export { default as PreferenceDialog } from './PreferenceDialog/PreferenceDialog'
