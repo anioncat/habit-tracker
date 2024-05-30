@@ -6,10 +6,11 @@ import { Footer } from './components'
 import { useSelectionStore } from './stores'
 import { DEFAULT_THEME } from './config'
 import { applyTheme } from './config/styles'
+import { usePreferenceStore } from './stores/usePreferenceStore'
 
 export const App = () => {
   const setSelection = useSelectionStore((s) => s.setSelection)
-  const [theme] = useState(DEFAULT_THEME)
+  const [theme] = useState(usePreferenceStore().theme ?? DEFAULT_THEME)
 
   // Set default to now
   useEffect(() => {

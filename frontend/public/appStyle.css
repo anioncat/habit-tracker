@@ -721,6 +721,10 @@ html {
   width: 0.75rem;
 }
 
+.w-4\/5 {
+  width: 80%;
+}
+
 .w-fit {
   width: -moz-fit-content;
   width: fit-content;
@@ -728,10 +732,6 @@ html {
 
 .w-full {
   width: 100%;
-}
-
-.w-4\/5 {
-  width: 80%;
 }
 
 .min-w-\[360px\] {
@@ -907,6 +907,10 @@ html {
   background-color: var(--mantle);
 }
 
+.bg-overlay-0 {
+  background-color: var(--overlay-0);
+}
+
 .bg-overlay-1 {
   background-color: var(--overlay-1);
 }
@@ -963,6 +967,11 @@ html {
 .px-5 {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
 }
 
 .py-2 {
@@ -1064,6 +1073,10 @@ html {
 
 .hover\:border-primary:hover {
   border-color: var(--primary);
+}
+
+.hover\:bg-overlay-1:hover {
+  background-color: var(--overlay-1);
 }
 
 .hover\:bg-surface-0:hover {
