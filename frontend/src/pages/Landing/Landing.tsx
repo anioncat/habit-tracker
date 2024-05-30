@@ -34,13 +34,14 @@ const Landing = () => {
   return (
     <Main>
       <SectionsContainer>
-        <div className="container">
+        <div className="container text-lg">
           <p>{greet}!</p>
           <p>
             <a
               href={`/entry/${dayjs(time).year()}/${
                 dayjs(time).month() + 1
-              }/${dayjs(time).date()}`}>
+              }/${dayjs(time).date()}`}
+              className="text-primary hover:underline">
               Today
             </a>{' '}
             is {dayjs(time).format('dddd D MMM YYYY')}

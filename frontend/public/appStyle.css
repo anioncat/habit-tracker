@@ -1020,6 +1020,11 @@ html {
   line-height: 1.75rem;
 }
 
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -1105,6 +1110,10 @@ html {
 
 .hover\:text-primary:hover {
   color: var(--primary);
+}
+
+.hover\:underline:hover {
+  text-decoration-line: underline;
 }
 
 .hover\:brightness-110:hover {
