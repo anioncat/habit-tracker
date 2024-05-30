@@ -2,8 +2,12 @@ import { Link, To } from 'react-router-dom'
 import { AppStyle } from '../config/style'
 import { ChevronLeft, Cog } from 'lucide-react'
 import Button from './Button'
+import Dialog from './Dialog'
+import { useState } from 'react'
 
 const Header = ({ center, linkTo }: { center?: boolean; linkTo?: To }) => {
+  const [prefOpen, setPrefOpen] = useState(false)
+
   const content = (
     <>
       {/* <Logo /> */}
@@ -21,6 +25,15 @@ const Header = ({ center, linkTo }: { center?: boolean; linkTo?: To }) => {
     )
 
   const justify = center ? 'justify-center' : ''
+
+  const PreferenceButton = (
+    <Button
+      className="bg-mantle [&_svg]:stroke-text border-2 rounded-full border-primary p-1 m-0 active:brightness-90 hover:brightness-110"
+      onClick={() => {
+        setPrefOpen(true)
+      }}
+      icon={<Cog></Cog>}></Button>
+  )
 
   return (
     <>
@@ -45,11 +58,16 @@ const Header = ({ center, linkTo }: { center?: boolean; linkTo?: To }) => {
             <div></div>
           )}
           <HeaderContent></HeaderContent>
-          <Button onClick={() => {}} clear>
-            <Cog></Cog>
-          </Button>
+          {PreferenceButton}
         </div>
       </header>
+      <Dialog
+        title="Preferences"
+        isOpen={prefOpen}
+        onClose={() => setPrefOpen(false)}
+        closeLabel="Done">
+        <div>Meow</div>
+      </Dialog>
     </>
   )
 }

@@ -36,7 +36,7 @@ const Button = ({
     ' [&_svg]:stroke-base ' +
     AppStyle.whiteText
   const spacing = `m-0 border-0 rounded inline-flex gap-2 ${
-    icon ? 'p-1' : 'py-2 px-5'
+    icon ? 'p-1 aspect-square' : 'py-2 px-5'
   }`
   const text = 'font-semibold text-sm'
   const alignment = 'justify-center items-center'
