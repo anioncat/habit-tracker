@@ -3,23 +3,23 @@ import { Theme } from './utils'
 const CatppucinFrappe: Theme = {
   primary: '#ca9ee6', // Mauve
   secondary: '#f2d5cf', // Rosewater
-  score0: '#ed8796', // Red
-  score1: '#eed49f', // Yellow
-  score2: '#f5a97f', // Peach
-  score3: '#a6da95', // Green
-  score4: '#91d7e3', // Sky
-  text: '#cad3f5', // Text
-  'subtext-1': '#b8c0e0',
-  'subtext-0': '#a5adcb',
-  'overlay-2': '#939ab7',
-  'overlay-1': '#8087a2',
-  'overlay-0': '#6e738d',
-  'surface-2': '#5b6078',
-  'surface-1': '#494d64',
-  'surface-0': '#363a4f',
-  base: '#24273a',
-  mantle: '#1e2030',
-  crust: '#181926',
+  score0: '#e78284', // Red
+  score1: '#e5c890', // Yellow
+  score2: '#ef9f76', // Peach
+  score3: '#a6d189', // Green
+  score4: '#99d1db', // Sky
+  text: '#c6d0f5', // Text
+  'subtext-1': '#b5bfe2',
+  'subtext-0': '#a5adce',
+  'overlay-2': '#949cbb',
+  'overlay-1': '#838ba7',
+  'overlay-0': '#737994',
+  'surface-2': '#626880',
+  'surface-1': '#51576d',
+  'surface-0': '#414559',
+  base: '#303446',
+  mantle: '#292c3c',
+  crust: '#232634',
 }
 
 export default CatppucinFrappe
