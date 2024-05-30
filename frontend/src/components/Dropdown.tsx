@@ -52,8 +52,8 @@ const Dropdown = ({ label, items, onClose = () => {} }: DropdownProps) => {
           setOpenState(!openState)
         }}></Item>
       {openState &&
-        items?.map((item) => {
-          return <Item label={item.label} action={item.action}></Item>
+        items?.map((item, i) => {
+          return <Item key={i} label={item.label} action={item.action}></Item>
         })}
     </div>
   )

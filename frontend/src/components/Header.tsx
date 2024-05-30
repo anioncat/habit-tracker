@@ -15,14 +15,11 @@ const Header = ({ center, linkTo }: { center?: boolean; linkTo?: To }) => {
     </>
   )
 
-  const HeaderContent = () =>
-    linkTo ? (
-      <Link className="text-text" to={linkTo}>
-        {content}
-      </Link>
-    ) : (
-      content
-    )
+  const HeaderContent = () => (
+    <Link className="text-text drop-shadow" to={linkTo ?? '/'}>
+      {content}
+    </Link>
+  )
 
   const justify = center ? 'justify-center' : ''
 
