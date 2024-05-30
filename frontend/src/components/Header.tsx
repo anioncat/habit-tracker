@@ -2,8 +2,8 @@ import { Link, To } from 'react-router-dom'
 import { AppStyle } from '../config/style'
 import { ChevronLeft, Cog } from 'lucide-react'
 import Button from './Button'
-import Dialog from './Dialog'
 import { useState } from 'react'
+import PreferenceDialog from './PreferenceDialog'
 
 const Header = ({ center, linkTo }: { center?: boolean; linkTo?: To }) => {
   const [prefOpen, setPrefOpen] = useState(false)
@@ -61,13 +61,9 @@ const Header = ({ center, linkTo }: { center?: boolean; linkTo?: To }) => {
           {PreferenceButton}
         </div>
       </header>
-      <Dialog
-        title="Preferences"
+      <PreferenceDialog
         isOpen={prefOpen}
-        onClose={() => setPrefOpen(false)}
-        closeLabel="Done">
-        <div>Meow</div>
-      </Dialog>
+        setOpen={setPrefOpen}></PreferenceDialog>
     </>
   )
 }
