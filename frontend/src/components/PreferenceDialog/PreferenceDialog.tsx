@@ -15,7 +15,7 @@ const PreferenceDialog = ({
 }) => {
   const prefs = usePreferenceStore()
 
-  const currentTheme = prefs.theme ?? DEFAULT_THEME
+  const currentTheme = prefs.theme ? prefs.theme : DEFAULT_THEME
   const themeNames = Object.keys(themes).filter((t) => t !== currentTheme)
   const readableNames = dekebabNames(themeNames)
 

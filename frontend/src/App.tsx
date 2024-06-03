@@ -24,7 +24,6 @@ export const App = () => {
   }, [setSelection])
 
   useEffect(() => {
-    console.log(`Applying theme: "${theme}" DEFAULT_THEME is ${DEFAULT_THEME}`)
     applyTheme(theme)
   }, [theme])
 
