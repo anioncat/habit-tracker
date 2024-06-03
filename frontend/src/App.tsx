@@ -11,7 +11,7 @@ import { usePreferenceStore } from './stores/usePreferenceStore'
 export const App = () => {
   const setSelection = useSelectionStore((s) => s.setSelection)
   const prefs = usePreferenceStore()
-  const theme = prefs.theme.length > 0 ? prefs.theme : DEFAULT_THEME
+  const theme = prefs.theme ? prefs.theme : DEFAULT_THEME
 
   // Set default to now
   useEffect(() => {
