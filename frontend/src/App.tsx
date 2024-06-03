@@ -23,6 +23,7 @@ export const App = () => {
   }, [setSelection])
 
   useEffect(() => {
+    console.log(`Applying theme: ${theme}`)
     applyTheme(theme)
   }, [theme])
 
