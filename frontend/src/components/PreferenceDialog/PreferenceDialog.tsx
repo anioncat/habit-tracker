@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { DEFAULT_THEME, themes } from '../../config'
 import { applyTheme } from '../../config/styles/utils'
 import { usePreferenceStore } from '../../stores/usePreferenceStore'
@@ -17,21 +18,24 @@ const PreferenceDialog = ({
 
   const currentTheme = prefs.theme ? prefs.theme : DEFAULT_THEME
   const themeNames = Object.keys(themes).filter((t) => t !== currentTheme)
-  const readableNames = dekebabNames(themeNames)
+  const readableNames = useMemo(() => dekebabNames(themeNames), [themeNames])
 
-  const themeDropdownItems: DropdownItem[] = Array.from({
-    length: readableNames.length,
-  })
-  for (let i = 0; i < readableNames.length; i++) {
-    themeDropdownItems[i] = {
-      label: readableNames[i],
-      action: () => {
-        const selectedTheme = themeNames[i]
-        applyTheme(selectedTheme)
-        prefs.set({ ...prefs, theme: selectedTheme })
-      },
+  const themeDropdownItems: DropdownItem[] = useMemo(() => {
+    const dropdownItems = Array.from({
+      length: readableNames.length,
+    }) as DropdownItem[]
+    for (let i = 0; i < readableNames.length; i++) {
+      dropdownItems[i] = {
+        label: readableNames[i],
+        action: () => {
+          const selectedTheme = themeNames[i]
+          applyTheme(selectedTheme)
+          prefs.set({ ...prefs, theme: selectedTheme })
+        },
+      }
     }
-  }
+    return dropdownItems
+  }, [prefs, themeNames, readableNames])
 
   return (
     <Dialog
