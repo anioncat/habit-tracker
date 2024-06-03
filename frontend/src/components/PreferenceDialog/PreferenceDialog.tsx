@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { DEFAULT_THEME, themes } from '../../config'
 import { applyTheme } from '../../config/styles/utils'
 import { usePreferenceStore } from '../../stores/usePreferenceStore'
-import { dekebabNames } from '../../util/dekebabName'
+import { dekebabName, dekebabNames } from '../../util/dekebabName'
 import Dialog from '../Dialog'
 import Dropdown, { DropdownItem } from '../Dropdown'
 import { PreferenceItem } from './PreferenceItem'
@@ -45,7 +45,7 @@ const PreferenceDialog = ({
       closeLabel="Done">
       <PreferenceItem label="Theme:">
         <Dropdown
-          label={dekebabNames([prefs.theme])[0]}
+          label={dekebabName(currentTheme)}
           items={themeDropdownItems}></Dropdown>
       </PreferenceItem>
     </Dialog>
