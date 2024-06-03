@@ -1,4 +1,4 @@
-import { themes } from '.'
+import { DEFAULT_THEME, themes } from '.'
 
 export interface Theme {
   primary: string
@@ -55,7 +55,7 @@ export const mapTheme = (variables: Theme): MappedTheme => {
 }
 
 export const applyTheme = (theme: string) => {
-  const themeVarables = mapTheme(themes[theme])
+  const themeVarables = mapTheme(themes[theme] ?? DEFAULT_THEME)
   if (!themeVarables) return
 
   const root = document.documentElement
