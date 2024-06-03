@@ -4,7 +4,8 @@ export const dekebabNames = (names: string[]): string[] => {
     const name = names[i]
     const tokens = name.split('-')
     for (let j = 0; j < tokens.length; j++) {
-      tokens[j] = tokens[j][0].toUpperCase() + tokens[j].slice(1)
+      tokens[j] =
+        tokens[j].charAt(0)?.toUpperCase() + tokens[j].slice(1) ?? tokens[j]
     }
     clearNames[i] = tokens.join(' ')
   }
