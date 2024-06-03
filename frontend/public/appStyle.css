@@ -453,7 +453,7 @@ video {
 
   font-style: normal;
 
-  src: url(NunitoSans.ttf) format('truetype');
+  src: url(/NunitoSans.ttf) format('truetype');
 }
 
 html {

@@ -1,5 +1,5 @@
 import dayjs from 'dayjs'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import * as Pages from './pages'
 import { Footer } from './components'
@@ -10,7 +10,8 @@ import { usePreferenceStore } from './stores/usePreferenceStore'
 
 export const App = () => {
   const setSelection = useSelectionStore((s) => s.setSelection)
-  const [theme] = useState(usePreferenceStore().theme ?? DEFAULT_THEME)
+  const prefs = usePreferenceStore()
+  const theme = prefs.theme.length > 0 ? prefs.theme : DEFAULT_THEME
 
   // Set default to now
   useEffect(() => {
@@ -23,7 +24,7 @@ export const App = () => {
   }, [setSelection])
 
   useEffect(() => {
-    console.log(`Applying theme: ${theme}`)
+    console.log(`Applying theme: "${theme}" DEFAULT_THEME is ${DEFAULT_THEME}`)
     applyTheme(theme)
   }, [theme])
 
