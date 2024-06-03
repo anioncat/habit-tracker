@@ -5,7 +5,7 @@ import * as Pages from './pages'
 import { Footer } from './components'
 import { useSelectionStore } from './stores'
 import { DEFAULT_THEME } from './config'
-import { applyTheme } from './config/styles'
+import { applyTheme } from './config/styles/utils'
 import { usePreferenceStore } from './stores/usePreferenceStore'
 
 export const App = () => {

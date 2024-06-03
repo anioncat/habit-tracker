@@ -1,9 +1,10 @@
-import { dekebabNames } from '../../util/dekebabName'
-import { applyTheme, themes } from '../../config'
+import { DEFAULT_THEME, themes } from '../../config'
+import { applyTheme } from '../../config/styles/utils'
 import { usePreferenceStore } from '../../stores/usePreferenceStore'
+import { dekebabNames } from '../../util/dekebabName'
 import Dialog from '../Dialog'
-import { PreferenceItem } from './PreferenceItem'
 import Dropdown, { DropdownItem } from '../Dropdown'
+import { PreferenceItem } from './PreferenceItem'
 
 const PreferenceDialog = ({
   isOpen,
@@ -14,7 +15,7 @@ const PreferenceDialog = ({
 }) => {
   const prefs = usePreferenceStore()
 
-  const currentTheme = prefs.theme
+  const currentTheme = prefs.theme ?? DEFAULT_THEME
   const themeNames = Object.keys(themes).filter((t) => t !== currentTheme)
   const readableNames = dekebabNames(themeNames)
 
