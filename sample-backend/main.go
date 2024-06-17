@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 
 	"habit-back/api"
@@ -11,6 +12,7 @@ import (
 
 func main() {
 	r := gin.Default()
+	r.Use(cors.Default())
 	r.GET("/ping", Ping("Server"))
 	v1 := r.Group("/v1")
 	{
