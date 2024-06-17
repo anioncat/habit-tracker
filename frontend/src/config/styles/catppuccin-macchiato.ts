@@ -1,4 +1,4 @@
-import { Theme } from './utils'
+import { Theme } from './types'
 
 const CatppucinMacchiato: Theme = {
   primary: '#c6a0f6', // Mauve

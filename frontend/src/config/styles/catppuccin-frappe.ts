@@ -1,4 +1,4 @@
-import { Theme } from './utils'
+import { Theme } from './types'
 
 const CatppucinFrappe: Theme = {
   primary: '#ca9ee6', // Mauve
