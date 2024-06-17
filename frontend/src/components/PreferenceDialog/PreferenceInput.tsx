@@ -1,5 +1,5 @@
 import { createRef, useState } from 'react'
-import { AppStyle } from '../../config/style'
+import { Input } from '../Input'
 
 export const PreferenceInput = ({
   value,
@@ -12,9 +12,8 @@ export const PreferenceInput = ({
   const thisRef = createRef<HTMLInputElement>()
 
   return (
-    <input
+    <Input
       ref={thisRef}
-      className={`resize-none border-b-4 ${AppStyle.primaryBorder} ${AppStyle.whiteBg} rounded p-1 text-right`}
       value={backupAddrVal}
       onChange={(e) => {
         setBackupAddrVal(e.target.value)
@@ -24,6 +23,7 @@ export const PreferenceInput = ({
           thisRef.current?.blur()
         }
       }}
-      onBlur={() => commit(backupAddrVal)}></input>
+      onBlur={() => commit(backupAddrVal)}
+      alignRight></Input>
   )
 }

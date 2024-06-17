@@ -42,6 +42,8 @@ export const AppStyle = {
   // Special
   monthHover: 'hover:bg-surface-0',
 
+  inputStyle: 'resize-none border-b-4 border-primary bg-base rounded p-1',
+
   // Scores
   score0Bg: 'bg-score0',
   score1Bg: 'bg-score1',
