@@ -52,15 +52,17 @@ const PreferenceDialog = ({
           label={dekebabName(currentTheme)}
           items={themeDropdownItems}></Dropdown>
       </PreferenceItem>
-      <PreferenceItem label="Remote backup address:">
+      <PreferenceItem label="Backup address:">
         <PreferenceInput
           value={prefs.backupAddr}
           commit={(backupAddrVal: string) => {
-            const newPrefs: Preferences = {
-              ...prefs,
-              backupAddr: backupAddrVal,
+            if (backupAddrVal !== prefs.backupAddr) {
+              const newPrefs: Preferences = {
+                ...prefs,
+                backupAddr: backupAddrVal,
+              }
+              prefs.set(newPrefs)
             }
-            prefs.set(newPrefs)
           }}></PreferenceInput>
       </PreferenceItem>
     </Dialog>

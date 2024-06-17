@@ -5,7 +5,6 @@ import { useSearchParams } from 'react-router-dom'
 
 import { Button, Main, MonthView, YearView } from '../../components'
 import { randomGreeting } from '../../util/greetings'
-// import { useJournalDayStore } from '/src/stores'
 
 const Landing = () => {
   const [time, setTime] = useState(new Date().getTime())
