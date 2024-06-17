@@ -8,8 +8,7 @@ import { randomGreeting } from '../../util/greetings'
 // import { useJournalDayStore } from '/src/stores'
 
 const Landing = () => {
-  const [greet, setGreet] = useState('Hello')
-  const [time, setTime] = useState(0)
+  const [time, setTime] = useState(new Date().getTime())
   const [monthView, setMonthView] = useState(true)
 
   const [searchParams] = useSearchParams()
@@ -17,11 +16,15 @@ const Landing = () => {
   // const clearData = useJournalDayStore(s => s.clearJournal)
 
   useEffect(() => {
-    setTime(new Date().getTime())
-    setGreet(randomGreeting())
-  }, [])
-
-  setInterval(() => setTime(new Date().getTime()), 60000)
+    const oldDate = dayjs(time).date()
+    const id = setInterval(() => {
+      const newTime = new Date().getTime()
+      if (oldDate !== dayjs(newTime).date()) {
+        setTime(newTime)
+      }
+    }, 30000)
+    return () => clearInterval(id)
+  }, [time])
 
   const switchViewType = () => {
     setMonthView(!monthView)
@@ -35,12 +38,10 @@ const Landing = () => {
     <Main>
       <SectionsContainer>
         <div className="container text-lg">
-          <p>{greet}!</p>
+          <p>{randomGreeting()}!</p>
           <p>
             <a
-              href={`/entry/${dayjs(time).year()}/${
-                dayjs(time).month() + 1
-              }/${dayjs(time).date()}`}
+              href={`/entry/${dayjs(time).format('YYYY/M/D')}`}
               className="text-primary hover:underline">
               Today
             </a>{' '}
