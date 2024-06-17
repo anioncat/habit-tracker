@@ -1,11 +1,15 @@
 import { useMemo } from 'react'
 import { DEFAULT_THEME, themes } from '../../config'
 import { applyTheme } from '../../config/styles/utils'
-import { usePreferenceStore } from '../../stores/usePreferenceStore'
+import {
+  Preferences,
+  usePreferenceStore,
+} from '../../stores/usePreferenceStore'
 import { dekebabName, dekebabNames } from '../../util/dekebabName'
 import Dialog from '../Dialog'
 import Dropdown, { DropdownItem } from '../Dropdown'
 import { PreferenceItem } from './PreferenceItem'
+import { PreferenceInput } from './PreferenceInput'
 
 const PreferenceDialog = ({
   isOpen,
@@ -47,6 +51,17 @@ const PreferenceDialog = ({
         <Dropdown
           label={dekebabName(currentTheme)}
           items={themeDropdownItems}></Dropdown>
+      </PreferenceItem>
+      <PreferenceItem label="Remote backup address:">
+        <PreferenceInput
+          value={prefs.backupAddr}
+          commit={(backupAddrVal: string) => {
+            const newPrefs: Preferences = {
+              ...prefs,
+              backupAddr: backupAddrVal,
+            }
+            prefs.set(newPrefs)
+          }}></PreferenceInput>
       </PreferenceItem>
     </Dialog>
   )

@@ -8,7 +8,7 @@ export const PreferenceItem = ({
   children: ReactNode
 }) => {
   return (
-    <div className="flex flex-row justify-between w-full">
+    <div className="flex flex-row justify-between w-full mt-4">
       <span>{label}</span>
       {pref}
     </div>
