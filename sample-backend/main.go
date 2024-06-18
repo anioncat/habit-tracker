@@ -63,7 +63,7 @@ func PostJournal(rep *api.JournalRepository) func(c *gin.Context) {
 	return func(c *gin.Context) {
 		var data api.Data
 		if err := c.ShouldBindJSON(&data); err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			c.JSON(http.StatusBadRequest, gin.H{"status": "error", "error": err.Error(), "got": c.Request.Body})
 			return
 		}
 		if res, err := (*rep).Update(data); err != nil {

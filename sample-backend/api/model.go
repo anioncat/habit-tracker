@@ -1,32 +1,28 @@
 package api
 
-import (
-	"time"
-)
-
 type Data struct {
-	Meta     MetaData     `json:"meta"     binding:"required"`
-	Journals []JournalDay `json:"journals" binding:"required"`
+	Meta     MetaData      `json:"meta"     binding:"required"`
+	Journals []JournalYear `json:"journals" binding:"required"`
 }
 
 type MetaData struct {
-	DateCreated   time.Time `json:"dateCreated,omitempty"`
-	DateEdited    time.Time `json:"dateEdited,omitempty"`
-	SchemaVersion string    `json:"schemaVersion,omitempty"`
-	AppVersion    string    `json:"appVersion,omitempty"`
+	DateCreated   uint64 `json:"dateCreated,omitempty"`
+	DateEdited    uint64 `json:"dateEdited,omitempty"`
+	SchemaVersion string `json:"schemaVersion,omitempty"`
+	AppVersion    string `json:"appVersion,omitempty"`
 }
 
 type EntryData struct {
-	Id      int         `json:"id"`
-	Name    string      `json:"name"`
-	Data    interface{} `json:"data"`
-	Comment string      `json:"comment"`
-	IsScale bool        `json:"isScale"`
+	Id      int         `json:"id"      binding:"required"`
+	Name    string      `json:"name"    binding:"required"`
+	Data    interface{} `json:"data"    binding:"required"`
+	Comment string      `json:"comment" binding:"required"`
+	IsScale bool        `json:"isScale" binding:"required"`
 }
 
 type Entry struct {
 	Meta MetaData  `json:"meta"`
-	Data EntryData `json:"data"`
+	Data EntryData `json:"data" binding:"required"`
 }
 
 type JournalDay struct {
