@@ -195,9 +195,7 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
                     }
                     score={moodData[d] ?? undefined}>
                     <a
-                      href={`/entry/${time.year()}/${
-                        month + 1
-                      }/${d}?return=${month}`}
+                      href={`/entry/${time.year()}/${month + 1}/${d}`}
                       draggable="false">
                       <WeekDayLink>{d}</WeekDayLink>
                     </a>

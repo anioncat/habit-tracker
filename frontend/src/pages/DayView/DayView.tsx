@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams, useSearchParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 import DayEntry from './components/DayEntry'
 import { Main } from '../../components'
@@ -20,7 +20,6 @@ const DayView = () => {
   const setJournal = useJournalDayStore((s) => s.set)
 
   const [view, setView] = useState<JournalDay>()
-  const [searchParams] = useSearchParams()
 
   useEffect(() => {
     if (yearParam) {
@@ -53,7 +52,7 @@ const DayView = () => {
   }, [dateParam, entries, monthParam])
 
   return (
-    <Main backLink={`/?month=${searchParams.get('return')}&year=${jYear}`}>
+    <Main backLink={`/?month=${parseInt(monthParam ?? '0') - 1}&year=${jYear}`}>
       {view ? (
         <>
           <h2 className="font-bold text-2xl">
