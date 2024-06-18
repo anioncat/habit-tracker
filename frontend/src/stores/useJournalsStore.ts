@@ -1,16 +1,22 @@
 import { create, StoreApi } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-import { JournalDay, JournalYear } from '../types/ProjectTypes'
-
-import { APP_VERSION, SCHEMA_VERSION } from '../config'
+import {
+  JournalDay,
+  JournalsData,
+  JournalYear,
+  MetaData,
+} from '../types/ProjectTypes'
+import { createMetaData, updateMetaData } from '../util/metadata'
 
 interface JournalsStore {
   journals: JournalYear[]
+  meta: MetaData
   setJournals: (journals: JournalYear[]) => void
   clearJournalYears: () => void
   upsertJournalYear: (journalYear: JournalYear) => void
   deleteJournalYear: (year: number) => void
+  getJournalData: () => JournalsData
 }
 
 export const createNewYear = (year: number): JournalYear => {
@@ -18,21 +24,21 @@ export const createNewYear = (year: number): JournalYear => {
   return {
     year,
     entries: [] as JournalDay[],
-    meta: {
-      dateCreated: new Date().getTime(),
-      dateEdited: new Date().getTime(),
-      appVersion: APP_VERSION,
-      schemaVersion: SCHEMA_VERSION,
-    },
+    meta: createMetaData(),
   }
 }
 
 const useJournalsStore = create<JournalsStore>()(
   persist(
-    (set: StoreApi<JournalsStore>['setState']) => ({
+    (
+      set: StoreApi<JournalsStore>['setState'],
+      get: StoreApi<JournalsStore>['getState']
+    ) => ({
       journals: [] as JournalYear[],
-      setJournals: (journals: JournalYear[]) => set({ journals }),
-      clearJournalYears: () => set({ journals: [] }),
+      meta: {} as MetaData,
+      setJournals: (journals: JournalYear[]) =>
+        set({ journals, meta: createMetaData() }),
+      clearJournalYears: () => set({ journals: [], meta: createMetaData() }),
       upsertJournalYear: (journalYear) => {
         console.log('Journals updated')
         return set((s) => ({
@@ -41,10 +47,18 @@ const useJournalsStore = create<JournalsStore>()(
                 j.year === journalYear.year ? journalYear : j
               )
             : [...s.journals, journalYear],
+          meta: updateMetaData(s.meta),
         }))
       },
       deleteJournalYear: (year) =>
-        set((s) => ({ journals: s.journals.filter((j) => j.year !== year) })),
+        set((s) => ({
+          journals: s.journals.filter((j) => j.year !== year),
+          meta: updateMetaData(s.meta),
+        })),
+      getJournalData: () => {
+        const dataState = get()
+        return { journals: dataState.journals, meta: dataState.meta }
+      },
     }),
     {
       name: 'mood-tracker-journals',

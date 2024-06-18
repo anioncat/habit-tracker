@@ -43,3 +43,8 @@ export type JournalYear = {
   entries: JournalDay[]
   meta: MetaData
 }
+
+export type JournalsData = {
+  journals: JournalYear[]
+  meta: MetaData
+}

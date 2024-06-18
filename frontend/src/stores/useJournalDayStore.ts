@@ -3,8 +3,8 @@ import { persist } from 'zustand/middleware'
 
 import { JournalDay, JournalYear } from '../types/ProjectTypes'
 
-import { APP_VERSION, SCHEMA_VERSION } from '../config'
 import { produce } from 'immer'
+import { createMetaData, updateMetaData } from '../util/metadata'
 
 interface DayStore {
   journal: JournalYear
@@ -18,13 +18,7 @@ interface DayStore {
 
 export const createDayEntry = (month: number, date: number): JournalDay => {
   console.log('New day entry created!')
-  const now = new Date().getTime()
-  const metaData = {
-    dateCreated: now,
-    dateEdited: now,
-    appVersion: APP_VERSION,
-    schemaVersion: SCHEMA_VERSION,
-  }
+  const metaData = createMetaData()
 
   return {
     month,
@@ -77,6 +71,7 @@ const useJournalDayStore = create<DayStore>()(
                 ...journal.entries,
                 createDayEntry(month, date),
               ]
+              journal.meta.dateEdited = new Date().getTime()
             }
           })
         ),
@@ -86,12 +81,12 @@ const useJournalDayStore = create<DayStore>()(
           journal: {
             ...s.journal,
             entries: s.journal.entries.filter((j) => j.date !== day),
+            meta: updateMetaData(s.journal.meta),
           },
         })),
       updateJournalDay: (newJournalDay) =>
         set(
           produce(({ journal }: { journal: JournalYear }) => {
-            const now = new Date().getTime()
             const dIdx = journal.entries.findIndex(
               (p) =>
                 p.month === newJournalDay.month && p.date === newJournalDay.date
@@ -100,7 +95,7 @@ const useJournalDayStore = create<DayStore>()(
               ...journal.entries[dIdx],
               ...newJournalDay,
             }
-            journal.meta.dateEdited = now
+            journal.meta.dateEdited = new Date().getTime()
           })
         ),
     }),

@@ -15,6 +15,7 @@ export const PreferenceInput = ({
     <Input
       ref={thisRef}
       value={backupAddrVal}
+      placeholder="Disabled"
       onChange={(e) => {
         setBackupAddrVal(e.target.value)
       }}

@@ -4,16 +4,32 @@ import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
 import { Button, Main, MonthView, YearView } from '../../components'
+import { useBackup } from '../../hooks'
 import { randomGreeting } from '../../util/greetings'
 
 const Landing = () => {
   const [time, setTime] = useState(new Date().getTime())
   const [monthView, setMonthView] = useState(true)
+  const apiVersion = 'v1'
 
   const [searchParams] = useSearchParams()
 
   // const clearData = useJournalDayStore(s => s.clearJournal)
+  const backupHook = useBackup()
+  const backupApi = backupHook ? backupHook[apiVersion] : null
 
+  useEffect(() => {
+    backupApi
+      ?.syncBackup()
+      .catch((e) =>
+        console.error(
+          e,
+          '\n\nIs the address correct, or did you forget the protocol?'
+        )
+      )
+  }, [backupApi])
+
+  // Time updater
   useEffect(() => {
     const oldDate = dayjs(time).date()
     const id = setInterval(() => {

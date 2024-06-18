@@ -9,8 +9,7 @@ export const dekebabNames = (names: string[]): string[] => {
 export const dekebabName = (name: string): string => {
   const tokens = name.split('-')
   for (let j = 0; j < tokens.length; j++) {
-    tokens[j] =
-      tokens[j].charAt(0)?.toUpperCase() + tokens[j].slice(1) ?? tokens[j]
+    tokens[j] = tokens[j].charAt(0)?.toUpperCase() + tokens[j].slice(1)
   }
   return tokens.join(' ')
 }
