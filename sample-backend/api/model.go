@@ -5,8 +5,8 @@ import (
 )
 
 type Data struct {
-	LastModified time.Time    `json:"lastModified" binding:"required"`
-	Journals     []JournalDay `json:"journals" binding:"required"`
+	Meta     MetaData     `json:"meta"     binding:"required"`
+	Journals []JournalDay `json:"journals" binding:"required"`
 }
 
 type MetaData struct {
@@ -30,14 +30,14 @@ type Entry struct {
 }
 
 type JournalDay struct {
-	Month   int      `json:"month" binding:"required"`
-	Date    int      `json:"date" binding:"required"`
+	Month   int      `json:"month"   binding:"required"`
+	Date    int      `json:"date"    binding:"required"`
 	Entries []Entry  `json:"entries" binding:"required"`
-	Meta    MetaData `json:"meta" binding:"required"`
+	Meta    MetaData `json:"meta"    binding:"required"`
 }
 
 type JournalYear struct {
-	Year    int          `json:"year" binding:"required"`
+	Year    int          `json:"year"    binding:"required"`
 	Entries []JournalDay `json:"entries" binding:"required"`
-	Meta    MetaData     `json:"meta" binding:"required"`
+	Meta    MetaData     `json:"meta"    binding:"required"`
 }
