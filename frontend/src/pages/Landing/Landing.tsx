@@ -53,10 +53,12 @@ const Landing = () => {
             <MonthView
               initialTime={
                 searchParams.get('month') &&
+                !isNaN(Number(searchParams.get('month'))) &&
+                searchParams.get('year') &&
                 !isNaN(Number(searchParams.get('month')))
-                  ? dayjs(new Date().getTime()).month(
-                      Number(searchParams.get('month'))
-                    )
+                  ? dayjs(new Date().getTime())
+                      .month(Number(searchParams.get('month')))
+                      .year(Number(searchParams.get('year')))
                   : dayjs(new Date().getTime())
               }
             />
