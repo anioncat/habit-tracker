@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 import { EntryProps } from './DayEntry'
-import { useJournalDayStore } from '../../../stores'
 import { useResizeTextArea } from '../../../hooks'
 import { AppStyle } from '../../../config/style'
+import { useSaveJournals } from '../../../hooks/useSaveJournals'
 
 export const EntryComment = ({ entry, jDay }: EntryProps) => {
   const [comment, setComment] = useState('')
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
 
-  const updateJournalDay = useJournalDayStore((s) => s.updateJournalDay)
+  const updateJournalDay = useSaveJournals().updateJournalDay
 
   useEffect(() => {
     setComment(entry.data.comment)

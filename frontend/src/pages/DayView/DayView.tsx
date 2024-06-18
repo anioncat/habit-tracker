@@ -6,15 +6,17 @@ import { Main } from '../../components'
 import { useJournalDayStore, useJournalsStore } from '../../stores'
 import { createNewYear } from '../../stores/useJournalsStore'
 import { JournalDay } from '../../types/ProjectTypes'
+import { useSaveJournals } from '../../hooks/useSaveJournals'
 
 const DayView = () => {
   const { year: yearParam, month: monthParam, date: dateParam } = useParams()
 
   const journals = useJournalsStore((s) => s.journals)
+  const saveActions = useSaveJournals()
   const upsertJournalYear = useJournalsStore((s) => s.upsertJournalYear)
 
   const { year: jYear, entries } = useJournalDayStore((s) => s.journal) ?? {}
-  const addDayEntry = useJournalDayStore((s) => s.addDayEntry)
+  const addDayEntry = saveActions.addDayEntry
   const setJournal = useJournalDayStore((s) => s.set)
 
   const [view, setView] = useState<JournalDay>()

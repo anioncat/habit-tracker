@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react'
 import { Angry, Frown, Laugh, Meh, Smile } from 'lucide-react'
 
 import { ScaleButton } from './ScaleButton'
-import { useJournalDayStore } from '../../../stores'
 import { Entry, JournalDay, Scale } from '../../../types/ProjectTypes'
+import { useSaveJournals } from '../../../hooks/useSaveJournals'
 
 type ScaleProps = {
   entry: Entry
@@ -12,7 +12,7 @@ type ScaleProps = {
 }
 
 const ScaleEntry = ({ entry, jDay }: ScaleProps) => {
-  const updateJournalDay = useJournalDayStore((s) => s.updateJournalDay)
+  const updateJournalDay = useSaveJournals().updateJournalDay
 
   const [selected, setSelected] = useState<number | null>()
 
