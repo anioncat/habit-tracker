@@ -16,7 +16,7 @@ func main() {
 	r.GET("/ping", Ping("Server"))
 	v1 := r.Group("/v1")
 	{
-		var rep api.JournalRepository = api.CreatePTRep("test.json")
+		var rep api.JournalRepository = api.CreatePTRep("data.json")
 		if err := rep.Migrate(); err != nil {
 			log.Println(err)
 		}
