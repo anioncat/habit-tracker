@@ -2,8 +2,8 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import dayjs, { Dayjs } from 'dayjs'
 import Button from './Button'
-import { useJournalDayStore } from '../stores'
-import { JournalDay, Scale } from '../types/ProjectTypes'
+import { useJournalDayStore, useJournalsStore } from '../stores'
+import { JournalDay, JournalYear, Scale } from '../types/ProjectTypes'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { AppStyle } from '../config/style'
 
@@ -17,7 +17,9 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
   const [moodData, setMoodData] = useState<Record<number, number | null>>({})
   const [time, setTime] = useState(inTime)
 
-  const { entries } = useJournalDayStore((s) => s.journal) ?? {}
+  const { entries, year: jYear } = useJournalDayStore((s) => s.journal) ?? {}
+  const setJournalYear = useJournalDayStore((s) => s.set)
+  const journals = useJournalsStore((s) => s.journals)
 
   useEffect(() => {
     if (entries) {
@@ -87,12 +89,25 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
     return [week1, ...rest]
   }, [generateFirstWeek, generateRestOfWeeks])
 
+  const switchYear = (newYear: number) => {
+    if (newYear !== jYear) {
+      console.log('Year changed.')
+      setJournalYear(
+        journals.find((p) => p.year === newYear) ?? ({} as JournalYear)
+      )
+    }
+  }
+
   const previousMonth = () => {
-    setTime(time.subtract(1, 'month'))
+    const newTime = time.subtract(1, 'month')
+    setTime(newTime)
+    switchYear(newTime.year())
   }
 
   const nextMonth = () => {
-    setTime(time.add(1, 'month'))
+    const newTime = time.add(1, 'month')
+    setTime(newTime)
+    switchYear(newTime.year())
   }
 
   const MonthTableWeekHeader = ({

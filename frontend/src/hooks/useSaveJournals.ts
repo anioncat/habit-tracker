@@ -8,8 +8,8 @@ export interface SaveJournalActions {
 
 // Wrapper hook to update both stores when updating the journal
 export const useSaveJournals = (): SaveJournalActions => {
-  const journalDayStore = useJournalDayStore()
-  const journalsStore = useJournalsStore()
+  const journalDayStore = useJournalDayStore((s) => s)
+  const journalsStore = useJournalsStore((s) => s)
 
   return {
     addDayEntry: (month, date) => {

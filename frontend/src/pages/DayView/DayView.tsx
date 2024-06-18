@@ -53,7 +53,7 @@ const DayView = () => {
   }, [dateParam, entries, monthParam])
 
   return (
-    <Main backLink={`/?month=${searchParams.get('return')}`}>
+    <Main backLink={`/?month=${searchParams.get('return')}&year=${jYear}`}>
       {view ? (
         <>
           <h2 className="font-bold text-2xl">
