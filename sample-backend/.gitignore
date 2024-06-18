@@ -20,3 +20,5 @@ go.work.sum
 
 *.json
 *.db
+
+dist/*
