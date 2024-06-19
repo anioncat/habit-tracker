@@ -27,7 +27,6 @@ export type EntryData = {
 }
 
 export type Entry = {
-  meta: MetaData
   data: EntryData
 }
 
@@ -35,7 +34,6 @@ export type JournalDay = {
   month: number
   date: number
   entries: Entry[]
-  meta: MetaData
 }
 
 export type JournalYear = {

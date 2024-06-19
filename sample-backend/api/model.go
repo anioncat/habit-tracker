@@ -21,15 +21,13 @@ type EntryData struct {
 }
 
 type Entry struct {
-	Meta MetaData  `json:"meta"`
 	Data EntryData `json:"data" binding:"required"`
 }
 
 type JournalDay struct {
-	Month   int      `json:"month"   binding:"required"`
-	Date    int      `json:"date"    binding:"required"`
-	Entries []Entry  `json:"entries" binding:"required"`
-	Meta    MetaData `json:"meta"    binding:"required"`
+	Month   int     `json:"month"   binding:"required"`
+	Date    int     `json:"date"    binding:"required"`
+	Entries []Entry `json:"entries" binding:"required"`
 }
 
 type JournalYear struct {

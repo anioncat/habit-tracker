@@ -6,6 +6,7 @@ import { useSearchParams } from 'react-router-dom'
 import { Button, Main, MonthView, YearView } from '../../components'
 import { useBackup } from '../../hooks'
 import { randomGreeting } from '../../util/greetings'
+// import { useJournalDayStore } from '../../stores'
 
 const Landing = () => {
   const [time, setTime] = useState(new Date().getTime())
@@ -14,7 +15,7 @@ const Landing = () => {
 
   const [searchParams] = useSearchParams()
 
-  // const clearData = useJournalDayStore(s => s.clearJournal)
+  // const clearData = useJournalDayStore((s) => s.clearJournal)
   const backupHook = useBackup()
   const backupApi = backupHook ? backupHook[apiVersion] : null
 
@@ -100,12 +101,15 @@ const Landing = () => {
           )}
         </div>
         {/* <hr />
-      <Section>
-        <Button onClick={() => {
-          clearData()
-          setTimeout(() => window.location.reload(), 500)
-        }}>Clear data</Button>
-      </Section> */}
+        <SectionsContainer>
+          <Button
+            onClick={() => {
+              clearData()
+              setTimeout(() => window.location.reload(), 500)
+            }}>
+            Clear data
+          </Button>
+        </SectionsContainer> */}
       </SectionsContainer>
     </Main>
   )

@@ -23,15 +23,11 @@ const ScaleEntry = ({ entry, jDay }: ScaleProps) => {
   const selectButton = (newSelected: number) => {
     const newScale = newSelected === selected ? null : newSelected
     const newEntry = {
-      meta: {
-        ...entry.meta,
-        dateEdited: new Date().getTime(),
-      },
       data: {
         ...entry.data,
         data: newScale as Scale,
       },
-    }
+    } as Entry
     const newEntries = [
       ...jDay.entries.filter((p) => p.data.id !== entry.data.id),
       newEntry,

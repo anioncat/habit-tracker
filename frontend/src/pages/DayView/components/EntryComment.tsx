@@ -3,6 +3,7 @@ import { EntryProps } from './DayEntry'
 import { useResizeTextArea } from '../../../hooks'
 import { AppStyle } from '../../../config/style'
 import { useSaveJournals } from '../../../hooks/useSaveJournals'
+import { Entry, JournalDay } from '../../../types/ProjectTypes'
 
 export const EntryComment = ({ entry, jDay }: EntryProps) => {
   const [comment, setComment] = useState('')
@@ -16,15 +17,11 @@ export const EntryComment = ({ entry, jDay }: EntryProps) => {
 
   const handleSaveComment = () => {
     const newEntry = {
-      meta: {
-        ...entry.meta,
-        dateEdited: new Date().getTime(),
-      },
       data: {
         ...entry.data,
         comment,
       },
-    }
+    } as Entry
     const newEntries = [
       ...jDay.entries.filter((p) => p.data.id !== entry.data.id),
       newEntry,
@@ -32,7 +29,7 @@ export const EntryComment = ({ entry, jDay }: EntryProps) => {
     const newJDay = {
       ...jDay,
       entries: newEntries,
-    }
+    } as JournalDay
     updateJournalDay(newJDay)
   }
 

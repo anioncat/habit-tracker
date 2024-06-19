@@ -4,7 +4,7 @@ import { persist } from 'zustand/middleware'
 import { JournalDay, JournalYear } from '../types/ProjectTypes'
 
 import { produce } from 'immer'
-import { createMetaData, updateMetaData } from '../util/metadata'
+import { updateMetaData } from '../util/metadata'
 
 interface DayStore {
   journal: JournalYear
@@ -18,8 +18,6 @@ interface DayStore {
 
 export const createDayEntry = (month: number, date: number): JournalDay => {
   console.log('New day entry created!')
-  const metaData = createMetaData()
-
   return {
     month,
     date,
@@ -32,7 +30,6 @@ export const createDayEntry = (month: number, date: number): JournalDay => {
           comment: '',
           isScale: true,
         },
-        meta: structuredClone(metaData),
       },
       {
         data: {
@@ -42,10 +39,8 @@ export const createDayEntry = (month: number, date: number): JournalDay => {
           comment: '',
           isScale: true,
         },
-        meta: structuredClone(metaData),
       },
     ],
-    meta: structuredClone(metaData),
   }
 }
 
