@@ -39,17 +39,15 @@ const useJournalsStore = create<JournalsStore>()(
       setJournals: (journals: JournalYear[]) =>
         set({ journals, meta: createMetaData() }),
       clearJournalYears: () => set({ journals: [], meta: createMetaData() }),
-      upsertJournalYear: (journalYear) => {
-        console.log('Journals updated')
-        return set((s) => ({
+      upsertJournalYear: (journalYear) =>
+        set((s) => ({
           journals: s.journals.find((p) => p.year === journalYear.year)
             ? s.journals.map((j) =>
                 j.year === journalYear.year ? journalYear : j
               )
             : [...s.journals, journalYear],
           meta: updateMetaData(s.meta),
-        }))
-      },
+        })),
       deleteJournalYear: (year) =>
         set((s) => ({
           journals: s.journals.filter((j) => j.year !== year),

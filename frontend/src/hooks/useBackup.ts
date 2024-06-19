@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useJournalDayStore, useJournalsStore } from '../stores'
 import { usePreferenceStore } from '../stores/usePreferenceStore'
 import { JournalsData, JournalYear, MetaData } from '../types/ProjectTypes'
@@ -26,26 +26,29 @@ const NotImplementedError = (message = 'function not implemented') => {
 }
 
 const useBackup = (): BackupApi | null => {
-  const prefs = usePreferenceStore()
-  const upstream = prefs.backupAddr.split('/').join('/')
+  const backupAddr = usePreferenceStore((s) => s.backupAddr)
+  const upstream = backupAddr.split('/').join('/')
   const journalsStore = useJournalsStore((s) => s)
   const { journal, set: setUpdatedJournal } = useJournalDayStore((s) => s)
 
   const [upstreamOnline, setUpstreamOnline] = useState(false)
 
-  const checkConnection = () => {
+  const checkConnection = useCallback(() => {
     console.log('Checking for connection to', upstream)
+    let statusCode = 400
     fetch(`${upstream}/ping`, { mode: 'cors' })
       .then((res) => {
         res.json().then(() => {
           setUpstreamOnline(true)
         })
+        statusCode = res.status
       })
       .catch((err) => {
         setUpstreamOnline(false)
         console.log(err)
       })
-  }
+    return statusCode
+  }, [upstream])
 
   // Generic ping to endpoint
   useEffect(() => {
@@ -79,13 +82,14 @@ const useBackup = (): BackupApi | null => {
         console.log('Added', j.year)
         journalsStore.upsertJournalYear(j)
       } else {
-        if (!_.isEqual(storeJ.meta, j.meta)) {
-          if (storeJ.meta.dateEdited < j.meta.dateEdited) {
-            console.log('Updated', j.year)
-            journalsStore.upsertJournalYear(j)
-            if (j.year === journal.year) {
-              setUpdatedJournal(j)
-            }
+        if (
+          !_.isEqual(storeJ.meta, j.meta) &&
+          storeJ.meta.dateEdited < j.meta.dateEdited
+        ) {
+          console.log('Updated', j.year)
+          journalsStore.upsertJournalYear(j)
+          if (j.year === journal.year) {
+            setUpdatedJournal(j)
           }
         }
       }
