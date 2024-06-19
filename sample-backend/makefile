@@ -1,14 +1,14 @@
 # Makefile
-BINARY = backend
+BINARY=backend
 
 .PHONY: all build zip clean
 
-all: build zip
+all: build
 
 build: 
 	go build -o ./dist/${BINARY}
 
-zip: clean
+zip: build clean
 	mkdir -p ../release
 	tar -czf ../release/${BINARY}.tar.gz ./dist/${BINARY}
 
