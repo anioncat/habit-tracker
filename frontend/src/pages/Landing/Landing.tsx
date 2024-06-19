@@ -19,14 +19,23 @@ const Landing = () => {
   const backupApi = backupHook ? backupHook[apiVersion] : null
 
   useEffect(() => {
-    backupApi
-      ?.syncBackup()
-      .catch((e) =>
-        console.error(
-          e,
-          '\n\nIs the address correct, or did you forget the protocol?'
-        )
-      )
+    backupApi?.syncBackup().catch((e) => {
+      if (e instanceof TypeError) {
+        if (e.message.includes('NetworkError')) {
+          console.error('No connection')
+        } else {
+          console.error(e)
+        }
+      } else if (e instanceof SyntaxError) {
+        if (e.message.includes('JSON.parse')) {
+          console.log('Failed to parse JSON')
+        } else {
+          console.error(e)
+        }
+      } else {
+        console.error(e)
+      }
+    })
   }, [backupApi])
 
   // Time updater
