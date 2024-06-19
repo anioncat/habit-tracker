@@ -1,8 +1,7 @@
 import _ from 'lodash'
 import { useEffect, useState } from 'react'
-import { useJournalsStore } from '../stores'
+import { useJournalDayStore, useJournalsStore } from '../stores'
 import { usePreferenceStore } from '../stores/usePreferenceStore'
-import { PingStatus } from '../types/BackupTypes'
 import { JournalsData, JournalYear, MetaData } from '../types/ProjectTypes'
 
 interface V1Api {
@@ -30,8 +29,23 @@ const useBackup = (): BackupApi | null => {
   const prefs = usePreferenceStore()
   const upstream = prefs.backupAddr.split('/').join('/')
   const journalsStore = useJournalsStore((s) => s)
+  const { journal, set: setUpdatedJournal } = useJournalDayStore((s) => s)
 
   const [upstreamOnline, setUpstreamOnline] = useState(false)
+
+  const checkConnection = () => {
+    console.log('Checking for connection to', upstream)
+    fetch(`${upstream}/ping`, { mode: 'cors' })
+      .then((res) => {
+        res.json().then(() => {
+          setUpstreamOnline(true)
+        })
+      })
+      .catch((err) => {
+        setUpstreamOnline(false)
+        console.log(err)
+      })
+  }
 
   // Generic ping to endpoint
   useEffect(() => {
@@ -39,18 +53,9 @@ const useBackup = (): BackupApi | null => {
       console.log('No upstream store')
       setUpstreamOnline(false)
     } else {
-      console.log('Checking for connection to', upstream)
-      fetch(`${upstream}/ping`, { mode: 'cors' })
-        .then((res) => {
-          res.json().then((v: PingStatus) => {
-            setUpstreamOnline(true)
-            console.log('Hello', v.where)
-          })
-        })
-        .catch((err) => {
-          setUpstreamOnline(false)
-          console.log(err)
-        })
+      checkConnection()
+      const int = setInterval(checkConnection, 30_000)
+      return () => clearInterval(int)
     }
   }, [upstream])
 
@@ -78,6 +83,9 @@ const useBackup = (): BackupApi | null => {
           if (storeJ.meta.dateEdited < j.meta.dateEdited) {
             console.log('Updated', j.year)
             journalsStore.upsertJournalYear(j)
+            if (j.year === journal.year) {
+              setUpdatedJournal(j)
+            }
           }
         }
       }
