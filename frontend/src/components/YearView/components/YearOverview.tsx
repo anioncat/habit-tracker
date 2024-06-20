@@ -23,6 +23,7 @@ export const YearOverview = () => {
   }, [entries])
 
   const generateWeeks = useCallback(() => weeksGenerator(year), [year])
+
   return (
     <YearContainer>
       {generateWeeks().map((w, i) => (

@@ -1,19 +1,17 @@
 import dayjs from 'dayjs'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
-import { Button, Main, MonthView, YearView } from '../../components'
-import { randomGreeting } from '../../util/greetings'
-// import { useJournalDayStore } from '../../stores'
+import { Main } from '../../components'
+import { Greeter } from './components/Greeter'
+import { MoodView } from './components/MoodView'
+import { SectionsContainer } from './components/SectionsContainer'
 
 const Landing = () => {
   const [time, setTime] = useState(new Date().getTime())
-  const [monthView, setMonthView] = useState(true)
 
   const [searchParams] = useSearchParams()
-
-  // const clearData = useJournalDayStore((s) => s.clearJournal)
 
   // Time updater
   useEffect(() => {
@@ -27,67 +25,26 @@ const Landing = () => {
     return () => clearInterval(id)
   }, [time])
 
-  const switchViewType = () => {
-    setMonthView(!monthView)
-  }
+  const initialTimeCalc = useMemo(() => {
+    const monthValid =
+      searchParams.get('month') && !isNaN(Number(searchParams.get('month')))
+    const yearValid =
+      searchParams.get('year') && !isNaN(Number(searchParams.get('year')))
 
-  const SectionsContainer = ({ children }: { children: React.ReactNode }) => (
-    <div className="flex flex-col gap-4">{children}</div>
-  )
+    return monthValid && yearValid
+      ? dayjs(new Date().getTime())
+          .month(Number(searchParams.get('month')))
+          .year(Number(searchParams.get('year')))
+      : dayjs(new Date().getTime())
+  }, [searchParams])
 
   return (
     <Main>
       <SectionsContainer>
-        <div className="container text-lg">
-          <p>{randomGreeting()}!</p>
-          <p>
-            <a
-              href={`${import.meta.env.BASE_URL}entry/${dayjs(time).format(
-                'YYYY/M/D'
-              )}`}
-              className="text-primary hover:underline">
-              Today
-            </a>{' '}
-            is {dayjs(time).format('dddd D MMM YYYY')}
-          </p>
-          <hr />
-        </div>
-        <div>
-          {monthView ? (
-            <MonthView
-              initialTime={
-                searchParams.get('month') &&
-                !isNaN(Number(searchParams.get('month'))) &&
-                searchParams.get('year') &&
-                !isNaN(Number(searchParams.get('month')))
-                  ? dayjs(new Date().getTime())
-                      .month(Number(searchParams.get('month')))
-                      .year(Number(searchParams.get('year')))
-                  : dayjs(new Date().getTime())
-              }
-            />
-          ) : (
-            <YearView />
-          )}
-          <hr />
-        </div>
-        <div>
-          {monthView ? (
-            <Button onClick={switchViewType}>Year View</Button>
-          ) : (
-            <Button onClick={switchViewType}>Month View</Button>
-          )}
-        </div>
+        <Greeter time={dayjs(time)}></Greeter>
+        <MoodView initialTime={initialTimeCalc}></MoodView>
         {/* <hr />
-        <SectionsContainer>
-          <Button
-            onClick={() => {
-              clearData()
-              setTimeout(() => window.location.reload(), 500)
-            }}>
-            Clear data
-          </Button>
-        </SectionsContainer> */}
+        <JournalClearer></JournalClearer> */}
       </SectionsContainer>
     </Main>
   )
