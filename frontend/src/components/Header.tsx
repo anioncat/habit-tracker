@@ -16,7 +16,9 @@ const Header = ({ center, linkTo }: { center?: boolean; linkTo?: To }) => {
   )
 
   const HeaderContent = () => (
-    <Link className="text-text drop-shadow" to={linkTo ?? '/'}>
+    <Link
+      className="text-text drop-shadow"
+      to={linkTo ?? `${import.meta.env.BASE_URL}`}>
       {content}
     </Link>
   )

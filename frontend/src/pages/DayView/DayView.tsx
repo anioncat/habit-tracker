@@ -52,7 +52,10 @@ const DayView = () => {
   }, [dateParam, entries, monthParam])
 
   return (
-    <Main backLink={`/?month=${parseInt(monthParam ?? '0') - 1}&year=${jYear}`}>
+    <Main
+      backLink={`${import.meta.env.BASE_URL}?month=${
+        parseInt(monthParam ?? '0') - 1
+      }&year=${jYear}`}>
       {view ? (
         <>
           <h2 className="font-bold text-2xl">

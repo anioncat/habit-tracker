@@ -59,6 +59,8 @@ const Landing = () => {
     <div className="flex flex-col gap-4">{children}</div>
   )
 
+  console.log('landing rerendere4d')
+
   return (
     <Main>
       <SectionsContainer>
@@ -66,7 +68,9 @@ const Landing = () => {
           <p>{randomGreeting()}!</p>
           <p>
             <a
-              href={`/entry/${dayjs(time).format('YYYY/M/D')}`}
+              href={`${import.meta.env.BASE_URL}entry/${dayjs(time).format(
+                'YYYY/M/D'
+              )}`}
               className="text-primary hover:underline">
               Today
             </a>{' '}

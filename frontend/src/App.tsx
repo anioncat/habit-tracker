@@ -30,8 +30,11 @@ export const App = () => {
   return (
     <div className="flex flex-col min-h-lvh">
       <Routes>
-        <Route path="/" element={<Pages.Landing />} />
-        <Route path="/entry/:year/:month/:date" element={<Pages.DayView />} />
+        <Route path={import.meta.env.BASE_URL} element={<Pages.Landing />} />
+        <Route
+          path={`${import.meta.env.BASE_URL}entry/:year/:month/:date`}
+          element={<Pages.DayView />}
+        />
         <Route path="*" element={<Pages.Landing />} />
       </Routes>
       <Footer />

@@ -36,7 +36,8 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
     setMoodData(r)
   }, [moodType, monthData, time])
 
-  const month = time.month()
+  const month = useMemo(() => time.month(), [time])
+  console.log('stateTime', time)
 
   const now = useMemo(() => dayjs(new Date().getTime()), [])
 
@@ -91,21 +92,24 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
 
   const switchYear = (newYear: number) => {
     if (newYear !== jYear) {
-      console.log('Year changed.')
+      console.log('Year changed from', jYear, 'to', newYear)
       setJournalYear(
-        journals.find((p) => p.year === newYear) ?? ({} as JournalYear)
+        journals.find((p) => p.year === newYear) ??
+          ({ year: newYear } as JournalYear)
       )
     }
   }
 
   const previousMonth = () => {
     const newTime = time.subtract(1, 'month')
+    console.log('newTime', newTime)
     setTime(newTime)
     switchYear(newTime.year())
   }
 
   const nextMonth = () => {
     const newTime = time.add(1, 'month')
+    console.log('newTime', newTime)
     setTime(newTime)
     switchYear(newTime.year())
   }
@@ -195,7 +199,9 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
                     }
                     score={moodData[d] ?? undefined}>
                     <a
-                      href={`/entry/${time.year()}/${month + 1}/${d}`}
+                      href={`${import.meta.env.BASE_URL}entry/${time.year()}/${
+                        month + 1
+                      }/${d}`}
                       draggable="false">
                       <WeekDayLink>{d}</WeekDayLink>
                     </a>

@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "concurrently \"tailwind -i src/app.css -o public/appStyle.css --watch\" \"vite --host 0.0.0.0 --port 1234\"",
     "build": "tsc && tailwind -i src/app.css -o public/appStyle.css --minify && vite build",
+    "build-sub": "tsc && tailwind -i src/app.css -o public/appStyle.css --minify && vite build --base=/habit/",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
