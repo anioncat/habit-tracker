@@ -4,40 +4,16 @@ import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
 import { Button, Main, MonthView, YearView } from '../../components'
-import { useBackup } from '../../hooks'
 import { randomGreeting } from '../../util/greetings'
 // import { useJournalDayStore } from '../../stores'
 
 const Landing = () => {
   const [time, setTime] = useState(new Date().getTime())
   const [monthView, setMonthView] = useState(true)
-  const apiVersion = 'v1'
 
   const [searchParams] = useSearchParams()
 
   // const clearData = useJournalDayStore((s) => s.clearJournal)
-  const backupHook = useBackup()
-  const backupApi = backupHook ? backupHook[apiVersion] : null
-
-  useEffect(() => {
-    backupApi?.syncBackup().catch((e) => {
-      if (e instanceof TypeError) {
-        if (e.message.includes('NetworkError')) {
-          console.error('No connection')
-        } else {
-          console.error(e)
-        }
-      } else if (e instanceof SyntaxError) {
-        if (e.message.includes('JSON.parse')) {
-          console.log('Failed to parse JSON')
-        } else {
-          console.error(e)
-        }
-      } else {
-        console.error(e)
-      }
-    })
-  }, [backupApi])
 
   // Time updater
   useEffect(() => {
@@ -58,8 +34,6 @@ const Landing = () => {
   const SectionsContainer = ({ children }: { children: React.ReactNode }) => (
     <div className="flex flex-col gap-4">{children}</div>
   )
-
-  console.log('landing rerendere4d')
 
   return (
     <Main>

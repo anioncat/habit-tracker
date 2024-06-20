@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useJournalDayStore, useJournalsStore } from '../stores'
 import { usePreferenceStore } from '../stores/usePreferenceStore'
 import { JournalsData, JournalYear, MetaData } from '../types/ProjectTypes'
@@ -14,10 +14,7 @@ interface V2Api {
   postJournal: (meta: MetaData, jy: JournalYear[]) => void
 }
 
-interface BackupApi {
-  v1: V1Api
-  v2: V2Api
-}
+type ApiVersion = 'v1' | 'v2'
 
 type NotImplementedError = Error
 
@@ -25,7 +22,7 @@ const NotImplementedError = (message = 'function not implemented') => {
   return { name: 'NotImplementedError', message }
 }
 
-const useBackup = (): BackupApi | null => {
+const useBackup = (version: ApiVersion) => {
   const backupAddr = usePreferenceStore((s) => s.backupAddr)
   const upstream = backupAddr.split('/').join('/')
   const journalsStore = useJournalsStore((s) => s)
@@ -136,7 +133,21 @@ const useBackup = (): BackupApi | null => {
     },
   }
 
-  return !upstreamOnline ? null : { v1: v1BackupActions, v2: v2BackupActions }
+  const getVersionedApi = () => {
+    switch (version) {
+      case 'v1':
+        return v1BackupActions
+      case 'v2':
+        return v2BackupActions
+      default:
+        return null
+    }
+  }
+
+  return useMemo(
+    () => (!upstreamOnline ? null : getVersionedApi()),
+    [upstreamOnline]
+  )
 }
 
 export default useBackup

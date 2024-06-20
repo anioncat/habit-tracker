@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { DayBlip } from './components/DayBlip/DayBlip'
 import { Scale } from '../../types/ProjectTypes'
 import { AppStyle } from '../../config/style'
+import { useBackupSync } from '../../hooks'
 
 type WeekEntry = {
   month: number
@@ -15,6 +16,8 @@ const YearView = () => {
   const [moodData, setMoodData] = useState<Record<string, number | null>>({})
 
   const { entries, year } = useJournalDayStore((s) => s.journal)
+
+  useBackupSync()
 
   useEffect(() => {
     if (entries) {

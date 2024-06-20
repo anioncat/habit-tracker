@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import dayjs, { Dayjs } from 'dayjs'
-import Button from './Button'
-import { useJournalDayStore, useJournalsStore } from '../stores'
-import { JournalDay, JournalYear, Scale } from '../types/ProjectTypes'
+import Button from '../Button'
+import { useJournalDayStore, useJournalsStore } from '../../stores'
+import { JournalDay, JournalYear, Scale } from '../../types/ProjectTypes'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { AppStyle } from '../config/style'
+import { AppStyle } from '../../config/style'
+import { useBackupSync } from '../../hooks'
 
 type MonthViewProps = {
   initialTime: Dayjs
@@ -20,6 +21,8 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
   const { entries, year: jYear } = useJournalDayStore((s) => s.journal) ?? {}
   const setJournalYear = useJournalDayStore((s) => s.set)
   const journals = useJournalsStore((s) => s.journals)
+
+  useBackupSync()
 
   useEffect(() => {
     if (entries) {
@@ -36,8 +39,7 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
     setMoodData(r)
   }, [moodType, monthData, time])
 
-  const month = useMemo(() => time.month(), [time])
-  console.log('stateTime', time)
+  const month = time.month()
 
   const now = useMemo(() => dayjs(new Date().getTime()), [])
 
@@ -102,14 +104,12 @@ const MonthView = ({ initialTime: inTime }: MonthViewProps) => {
 
   const previousMonth = () => {
     const newTime = time.subtract(1, 'month')
-    console.log('newTime', newTime)
     setTime(newTime)
     switchYear(newTime.year())
   }
 
   const nextMonth = () => {
     const newTime = time.add(1, 'month')
-    console.log('newTime', newTime)
     setTime(newTime)
     switchYear(newTime.year())
   }
