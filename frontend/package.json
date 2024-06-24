@@ -3,14 +3,14 @@
   "private": true,
   "version": "0.5.0",
   "schemaVersion": "1.0.0",
-  "homepage": "https://anioncat.github.io/habit/",
+  "homepage": "https://anioncat.github.io/habit-tracker/",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "dev": "concurrently \"tailwind -i src/app.css -o public/appStyle.css --watch\" \"vite --host 0.0.0.0 --port 1234\"",
     "build": "tsc && tailwind -i src/app.css -o public/appStyle.css --minify && vite build",
-    "build-sub": "tsc && tailwind -i src/app.css -o public/appStyle.css --minify && vite build --base=/habit/",
+    "build-sub": "tsc && tailwind -i src/app.css -o public/appStyle.css --minify && vite build --base=/habit-tracker/",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
