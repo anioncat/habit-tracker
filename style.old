@@ -1,0 +1,43 @@
+@font-face {
+  font-family: 'Nunito Sans';
+  src: url('NunitoSans.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+html {
+  font-family: var(--font-feature);
+}
+
+a,
+a:visited,
+a:active {
+  color: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+:root {
+  --font-feature: 'Nunito Sans', sans-serif;
+
+  --black: rgb(5, 5, 5);
+  --white: rgb(250, 250, 250);
+
+  --primary: rgb(78, 29, 143);
+  --primary-lite: rgb(118, 44, 214);
+  --secondary: rgb(98, 92, 105);
+
+  --scale-0: rgba(200, 200, 200, 0.25);
+  --scale-1: rgb(255, 5, 5);
+  --scale-2: rgb(255, 118, 5);
+  --scale-3: rgb(255, 230, 5);
+  --scale-4: rgb(168, 255, 5);
+  --scale-5: rgb(5, 255, 5);
+
+  --border-color: rgb(33, 33, 33);
+  --input-border: rgb(33, 33, 33);
+
+  background: var(--white);
+}
