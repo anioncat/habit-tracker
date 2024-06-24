@@ -1,7 +1,13 @@
-# Habit Tracker
+# Habit/Mood Tracker
 
-The habit tracker frontend web app is built using Bun, React Vite and TailwindCSS.
+A simple mood tracker to help track your day to day mood.
 
-The example backend server is written in Go.
+## Components
 
-## Backend communication format
+The habit tracker frontend web app is built using React Vite and TailwindCSS.
+
+The example backend server is written in Go using Gin. It currently saves your data in plaintext with an SQLite version in the works.
+
+## Features to add
+- [ ] Habit tracking badges
+
